@@ -23,7 +23,19 @@ public class Plateau {
         BLEU, ROUGE
     };
 
-    
+
+    public void testDeplacementJeton(){
+       
+        double x;
+        double y;
+
+        
+        x = StdDraw.mouseX();
+        y = StdDraw.mouseY();
+        StdDraw.circle(x, y, 0.5);
+       
+
+    }
     
     public void trace(){
         double i;
@@ -35,13 +47,12 @@ public class Plateau {
         for (i=0; i<N_LIG;i++){
 
             for (j=0; j<(N_LIG-i);j++){
-                    StdDraw.pause(100);
                     if (i>0){
                         StdDraw.circle(j+i*0.5, i-i*0.12, 0.5);  
                     }else{
                         StdDraw.circle(j+i*0.5, i, 0.5);  
                     }  
-                    StdDraw.show();   
+                      
             }
         }
     }
