@@ -10,19 +10,25 @@ public class Partie {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
-        int i = 0;
-
+        boolean start = true;
+        
+        StdDraw.enableDoubleBuffering();
         StdDraw.clear(); 
         jeu.trace();
         StdDraw.show();
-        while(i<1000000){
-             StdDraw.enableDoubleBuffering();
-             StdDraw.clear();
-             jeu.trace();
-             jeu.testDeplacementJeton();
-             StdDraw.show();
-            i++;
+
+        while(start != false){
+            if (StdDraw.mousePressed()){
+                StdDraw.clear();
+                jeu.trace();
+                jeu.testDeplacementJeton();
+                StdDraw.show();
+            }
+            
         }
+             
+            
+    
        
       
         /*

@@ -32,7 +32,8 @@ public class Plateau {
         
         x = StdDraw.mouseX();
         y = StdDraw.mouseY();
-        StdDraw.circle(x, y, 0.5);
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.filledCircle(x, y, 0.5);
        
 
     }
@@ -43,7 +44,8 @@ public class Plateau {
 
         StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
         StdDraw.setYscale(-0.5, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
-
+        StdDraw.setPenColor(StdDraw.BLACK);
+        
         for (i=0; i<N_LIG;i++){
 
             for (j=0; j<(N_LIG-i);j++){
