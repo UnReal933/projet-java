@@ -37,15 +37,25 @@ public class Plateau {
        
 
     }
+
+    public void traceEmplacementJeton(){
+        StdDraw.setPenColor(StdDraw.GRAY);
+        StdDraw.filledCircle(0.5, 4.5, 0.5);
+        StdDraw.filledCircle(4.5, 4.5, 0.5); 
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(0.5, 4.5, "Bleu");
+        StdDraw.text(4.5, 4.5, "Rouge");
+
+    }
     
-    public void trace(){
+    public void tracePlateau(){
         double i;
         double j;
 
         StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
         StdDraw.setYscale(-0.5, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
         StdDraw.setPenColor(StdDraw.BLACK);
-        
+        StdDraw.text(2.5, 5.2, "Le jeton manquant");
         for (i=0; i<N_LIG;i++){
 
             for (j=0; j<(N_LIG-i);j++){

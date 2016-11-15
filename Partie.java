@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by zulupero on 08/09/16.
@@ -14,18 +16,13 @@ public class Partie {
         
         StdDraw.enableDoubleBuffering();
         StdDraw.clear(); 
-        jeu.trace();
+        jeu.tracePlateau();
+        jeu.traceEmplacementJeton();
         StdDraw.show();
-
-        while(start != false){
-            if (StdDraw.mousePressed()){
-                StdDraw.clear();
-                jeu.trace();
-                jeu.testDeplacementJeton();
-                StdDraw.show();
-            }
+        
+        
             
-        }
+    
              
             
     
@@ -40,5 +37,8 @@ public class Partie {
         StdDraw.pause(10);  // attendre avant la prochaine mis à jour
         */
 
+    }
+    public void mouseClicked(MouseEvent e) {
+       System.out.println("click");
     }
 }
