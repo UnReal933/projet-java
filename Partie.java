@@ -14,17 +14,14 @@ public class Partie {
         Plateau jeu = new Plateau();  // argument à compléter selon conception
         boolean start = true;
         
+        boolean melange = true;
+
         StdDraw.enableDoubleBuffering();
         StdDraw.clear(); 
-        jeu.tracePlateau();
-        jeu.traceEmplacementJeton();
+        jeu.Plateau(melange);
         StdDraw.show();
         
         
-            
-    
-             
-            
     
        
       
