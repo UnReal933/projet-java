@@ -85,6 +85,22 @@ public class Plateau {
     }
 
 
+    public int getIdBleu(){
+        return idBleu;
+    }
+
+    public int getIdRouge(){
+        return idRouge;
+    }
+
+    public void setIdBLeu(int rang){
+        idBleu = valBleus[rang];
+    }
+
+    public void setIdRouge(int rang){
+        idRouge = valRouges[rang];
+    }
+
     public void testDeplacementJeton(){
        
         double x;
