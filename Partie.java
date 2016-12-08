@@ -14,7 +14,20 @@ public class Partie {
         Plateau jeu = new Plateau();  // argument à compléter selon conception
         boolean start = true;
         
-        boolean melange = true;
+        boolean melange;
+        int rep;
+
+        do{
+            System.out.println("Voulez-vous mélanger les jetons ? (O : Oui / 1 : Non)");
+            rep = input.nextInt();
+        }
+        while(rep != 0 && rep != 1);
+
+        if(rep == 0){
+            melange = true;
+        }else{
+            melange = false;
+        }
 
         StdDraw.enableDoubleBuffering();
         StdDraw.clear(); 

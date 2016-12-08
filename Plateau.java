@@ -31,6 +31,7 @@ public class Plateau {
 
 
      public void Plateau(boolean melange){
+       
         L_JEU = 10;
         H_JEU = L_JEU;
 
@@ -40,47 +41,19 @@ public class Plateau {
         int i = 0;
         int j = 0;
         boolean test = false;
-        
-        if(melange == true){
-            while(i<10){
-                test = false;
-                random = rand.nextInt(10 - 1 + 1) + 1;
-                System.out.println(random);
-                for(int k = 0; k<10; k++){
-                    if(valBleus[k] == random){
-                        test = true;
-                    }
-                }
-                if(test==false){
-                    valBleus[i] = random;
-                    i++;
-                }
-            }
-            while(j<10){
-                test = false;
-                random = rand.nextInt(10 - 1 + 1) + 1;
-                for(int k = 0; k<10; k++){
-                    if(valRouges[k] == random){
-                        test = true;
-                    }
-                }
-                if(test==false){
-                    valRouges[j] = random;
-                    j++;
-                }
-            }
-        }else{
-            for(i=0; i<10; i++){
+        for(i=0; i<10; i++){
                 valBleus[i] = i+1;
                 valRouges[i] = i+1;
-            }
         }
-
+        if(melange == true){
+            Util.shuffle(valBleus);
+            Util.shuffle(valRouges);
+        }
+    
         idBleu = valBleus[0];
         idRouge = valRouges[0];
         
-        tracePlateau();
-        traceEmplacementJeton();
+        trace();
         
     }
 
@@ -114,20 +87,8 @@ public class Plateau {
 
     }
 
-    public void traceEmplacementJeton(){
-        StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.filledCircle(0.5, 4.5, 0.5);
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledCircle(4.5, 4.5, 0.5); 
-        StdDraw.setPenColor(StdDraw.WHITE);
-        String nombreBleu =  String.valueOf(idBleu);
-        String nombreRouge =  String.valueOf(idRouge);
-        StdDraw.text(0.5, 4.5, nombreBleu);
-        StdDraw.text(4.5, 4.5, nombreRouge);
-
-    }
     
-    public void tracePlateau(){
+    public void trace(){
         double i;
         double j;
 
@@ -145,6 +106,18 @@ public class Plateau {
                       
             }
         }
+
+
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.filledCircle(0.5, 4.5, 0.5);
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.filledCircle(4.5, 4.5, 0.5); 
+        StdDraw.setPenColor(StdDraw.WHITE);
+        String nombreBleu =  String.valueOf(idBleu);
+        String nombreRouge =  String.valueOf(idRouge);
+        StdDraw.text(0.5, 4.5, nombreBleu);
+        StdDraw.text(4.5, 4.5, nombreRouge);
+
     }
 
     private Jeton[] etat;                       // tableau de jetons (1 jeton par case ou null si vide)
