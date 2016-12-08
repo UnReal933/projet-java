@@ -33,10 +33,9 @@ public class Partie {
         StdDraw.clear(); 
         jeu.Plateau(melange);
         StdDraw.show();
+        StdDraw.pause(10);
         
         
-    
-       
       
         /*
          *  Modèle de séquence pour afficher correctement
@@ -48,7 +47,5 @@ public class Partie {
         */
 
     }
-    public void mouseClicked(MouseEvent e) {
-       System.out.println("click");
-    }
+    
 }

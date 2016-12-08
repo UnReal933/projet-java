@@ -23,4 +23,13 @@ public class Util {
     	}
 
     }
+
+     public static double distance(double x1, double y1, double x2, double y2){
+
+    	double distance;
+    	double calcul = Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2);
+    	distance = Math.sqrt(calcul);
+
+    	return distance;
+    }
 }

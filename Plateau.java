@@ -30,7 +30,7 @@ public class Plateau {
     };
 
 
-     public void Plateau(boolean melange){
+     public Plateau(boolean melange){
        
         L_JEU = 10;
         H_JEU = L_JEU;

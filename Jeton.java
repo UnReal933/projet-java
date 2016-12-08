@@ -56,7 +56,29 @@ public class Jeton {
      * @param y ordonnée du jeton
      */
     public void trace(double x, double y){
-        /* à concevoir*/
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.filledCircle(4.5, 4.5, 0.5); 
     }
+
+    public int getPosition(){ return position; }
+    public void setPosition(int id){
+        position = id;
+    }
+
+    public int getValeur(){ return valeur; }
+    public void setValeur(int val){
+        valeur = val;
+    }
+
+    public Plateau.couleur getCouleur(){ return couleur; }
+    public void setCouleur(Plateau.couleur col){
+        couleur = col;
+    }
+
+    public double getRayon(){ return rayon; }
+    public void setRayon(double r){
+        rayon = r;
+    }
+
 
 }
