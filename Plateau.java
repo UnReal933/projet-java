@@ -39,8 +39,9 @@ public class Plateau {
     }
 
     public void traceEmplacementJeton(){
-        StdDraw.setPenColor(StdDraw.GRAY);
+        StdDraw.setPenColor(StdDraw.BLUE);
         StdDraw.filledCircle(0.5, 4.5, 0.5);
+           StdDraw.setPenColor(StdDraw.RED);
         StdDraw.filledCircle(4.5, 4.5, 0.5); 
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.text(0.5, 4.5, "Bleu");
