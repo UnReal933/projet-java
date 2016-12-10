@@ -30,7 +30,7 @@ public class Plateau {
     };
 
 
-     public Plateau(boolean melange){
+     public void Plateau(boolean melange){
        
         L_JEU = 10;
         H_JEU = L_JEU;
@@ -91,6 +91,7 @@ public class Plateau {
     public void trace(){
         double i;
         double j;
+        int compteur = 0;
 
         StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
         StdDraw.setYscale(-0.5, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
@@ -99,11 +100,13 @@ public class Plateau {
         for (i=0; i<N_LIG;i++){
             for (j=0; j<(N_LIG-i);j++){
                     if (i>0){
-                        StdDraw.circle(j+i*0.5, i-i*0.12, 0.5);  
+                        StdDraw.circle(j+i*0.5, i-i*0.12, 0.5);
+                         StdDraw.text(j+i*0.5, i-i*0.12, String.valueOf(compteur));  
                     }else{
-                        StdDraw.circle(j+i*0.5, i, 0.5);  
+                        StdDraw.circle(j+i*0.5, i, 0.5); 
+                        StdDraw.text(j+i*0.5, i, String.valueOf(compteur)); 
                     }  
-                      
+                    compteur++;  
             }
         }
 
