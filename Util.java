@@ -24,6 +24,19 @@ public class Util {
 
     }
 
+	public static String[] state2tab(String chaine){
+
+		int taille = chaine.length();
+		String tab[] = new String [taille/2];
+		int rangtab = 0;
+		for(int i = 0; i<taille; i++) {
+			String tempchaine = chaine.substring(i, (i + 1));
+			tab[rangtab] = tempchaine;
+			rangtab++;
+		}
+		return tab;
+	}
+
      public static double distance(double x1, double y1, double x2, double y2){
 
     	double distance;
