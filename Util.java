@@ -29,6 +29,7 @@ public class Util {
 		int taille = chaine.length();
 		String tab[] = new String [((taille-2)/2)];
 		int rangtab = 0;
+
 		for (int i = 1; i<taille-1; i=i+2){
 			String tempchaine = chaine.substring(i, (i + 2));
 			tab[rangtab] = tempchaine;
@@ -42,7 +43,7 @@ public class Util {
 
 		int taille = tab.length;
 		String chaine = "[";
-        
+
 		for (int i = 0 ; i < taille; i++){
 			 chaine = chaine + tab[i];
 		}
@@ -59,4 +60,60 @@ public class Util {
 
     	return distance;
     }
+
+
+    public static int idDebutLigne(int ligne){
+        switch (ligne)
+        {
+            case 0:
+                return 0 ;
+
+            case 1:
+                return 6 ;
+
+            case 2:
+                return 11 ;
+
+            case 3:
+                return 15 ;
+
+            case 4:
+                return 18 ;
+
+            case 5:
+                return 20 ;
+
+            default:
+                return 0;
+        }
+    }
+
+
+    public static int idFinLigne(int ligne){
+        switch (ligne)
+        {
+            case 0:
+                return 5 ;
+
+            case 1:
+                return 10 ;
+
+            case 2:
+                return 14 ;
+
+            case 3:
+                return 17 ;
+
+            case 4:
+                return 19 ;
+
+            case 5:
+                return 20 ;
+
+            default:
+                return 0;
+        }
+
+    }
+
 }
