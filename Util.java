@@ -26,15 +26,28 @@ public class Util {
 
 	public static String[] state2tab(String chaine){
 
-		int taille = chaine.length();
-		String tab[] = new String [taille/2];
+		int taille = chaine.length()-2;
+		String tab[] = new String [taille];
 		int rangtab = 0;
-		for(int i = 0; i<taille; i++) {
+		for (int i = 1; i<(taille/2); i++){
 			String tempchaine = chaine.substring(i, (i + 1));
 			tab[rangtab] = tempchaine;
 			rangtab++;
 		}
 		return tab;
+	}
+
+	public static String state2string (String tab[]){
+
+		int longueur = (tab.length)/2;
+		String chainefinale = "";
+		for (int i = 1 ; i < longueur-1 ; i++){
+			String tempchaine = tab[i];
+            chainefinale= chainefinale +tempchaine;
+
+		}
+		return chainefinale;
+
 	}
 
      public static double distance(double x1, double y1, double x2, double y2){

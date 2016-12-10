@@ -54,6 +54,13 @@ public class Plateau {
         idRouge = valRouges[0];
         
         trace();
+
+        String chaine = "[_B1_____________B2___R1_]";
+        String [] tab = new String[1000];
+        tab = Util.state2tab(chaine);
+
+
+
         
     }
 
