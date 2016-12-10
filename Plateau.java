@@ -55,13 +55,13 @@ public class Plateau {
         
         trace();
 
-        String chaine = "[__B1____________B2________R1__]";
+        String chaine = "[ _ B1 _ _ _ _ _ _ _ _ _ _ _ _ _ B2 _ _ _ R1 _ _ ]";
         int taille = chaine.length();
         String [] tab = new String[((taille-2)/2)];
         tab = Util.state2tab(chaine);
         System.out.println("state2tab :");
         for(int t = 0; t<tab.length; t++){
-            System.out.print(tab[t]);
+            System.out.println(tab[t]);
         }
         System.out.println("");
         String chaine2;

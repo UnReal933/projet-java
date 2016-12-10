@@ -27,13 +27,20 @@ public class Util {
 	public static String[] state2tab(String chaine){
 
 		int taille = chaine.length();
-		String tab[] = new String [((taille-2)/2)];
+		String tab[] = new String [((taille-5)/2)];
 		int rangtab = 0;
 
-		for (int i = 1; i<taille-1; i=i+2){
-			String tempchaine = chaine.substring(i, (i + 2));
-			tab[rangtab] = tempchaine;
-			rangtab++;
+		for (int i = 1; i<taille-1; i++){
+            if(chaine.charAt(i) == 'R' || chaine.charAt(i) == 'B'){
+                String tempchaine = chaine.substring(i, (i + 2));
+                tab[rangtab] = tempchaine;
+                rangtab++;
+            }
+            else if(chaine.charAt(i) == '_'){
+                tab[rangtab] = "_";
+                rangtab++;
+            }
+			
 		}
 
 		return tab;
@@ -42,10 +49,11 @@ public class Util {
 	public static String state2string(String tab[]){
 
 		int taille = tab.length;
-		String chaine = "[";
+		String chaine = "[ ";
 
 		for (int i = 0 ; i < taille; i++){
-			 chaine = chaine + tab[i];
+			 chaine = chaine + tab[i] + " ";
+
 		}
         chaine  = chaine + "]";
 
