@@ -72,7 +72,7 @@ public class Plateau {
         }
         
         trace();
-
+        selectId();
         String chaine = "[ _ B1 _ _ _ _ _ _ _ _ _ _ _ _ _ B2 _ _ _ R1 _ _ ]";
         int taille = chaine.length();
         String [] tab = new String[((taille-2)/2)];
@@ -157,6 +157,32 @@ public class Plateau {
         StdDraw.text(0.5, 4.5, nombreBleu);
         StdDraw.text(4.5, 4.5, nombreRouge);
 
+    }
+
+    public void selectId(){
+        double x;
+        double y;
+        
+        x = StdDraw.mouseX();
+        y = StdDraw.mouseY();
+
+        int res = getIdCase(x,y);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        if(res != 22){
+            StdDraw.filledCircle(plateau[res][0], plateau[res][1], 0.5);
+        }
+    }
+
+    public int getIdCase(double x, double y){
+        int id = 22;
+
+        for(int i=0; i<N_POS; i++){
+            if((x>=plateau[i][0]-0.5 || x>=plateau[i][0]+0.5) && (y>=plateau[i][1]-0.5 || y>=plateau[i][1]+0.5)){
+                id = i;
+            }
+        }
+
+        return id;
     }
 
     private Jeton[] etat;                       // tableau de jetons (1 jeton par case ou null si vide)
