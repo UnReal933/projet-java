@@ -28,10 +28,12 @@ public class Partie {
         }else{
             melange = false;
         }
+        jeu.Plateau(melange);
         while(true){
             StdDraw.enableDoubleBuffering();
             StdDraw.clear(); 
-            jeu.Plateau(melange);
+            jeu.trace();
+            jeu.selectId();
             StdDraw.show();
             StdDraw.pause(10);
         }

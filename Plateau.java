@@ -106,19 +106,6 @@ public class Plateau {
         idRouge = valRouges[rang];
     }
 
-    public void testDeplacementJeton(){
-       
-        double x;
-        double y;
-        
-        x = StdDraw.mouseX();
-        y = StdDraw.mouseY();
-        StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.filledCircle(x, y, 0.5);
-       
-
-    }
-
     
     public void trace(){
         int i;
@@ -131,22 +118,7 @@ public class Plateau {
               StdDraw.circle(plateau[i][0], plateau[i][1], 0.5);
               StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(i)); 
         }
-        /*
-        for (i=0; i<N_LIG;i++){
-            for (j=0; j<(N_LIG-i);j++){
-                    if (i>0){
-                        StdDraw.circle(j+i*0.5, i-i*0.12, 0.5);
-                         StdDraw.text(j+i*0.5, i-i*0.12, String.valueOf(compteur));  
-                    }else{
-                        StdDraw.circle(j+i*0.5, i, 0.5); 
-                        StdDraw.text(j+i*0.5, i, String.valueOf(compteur)); 
-                    }  
-                    compteur++;  
-            }
-        }
-        */
-
-
+       
         StdDraw.setPenColor(StdDraw.BLUE);
         StdDraw.filledCircle(0.5, 4.5, 0.5);
         StdDraw.setPenColor(StdDraw.RED);
