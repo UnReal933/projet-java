@@ -72,7 +72,7 @@ public class Util {
 
     public static int idDebutLigne(int ligne){
 
-        int id  = 0.5*Math.pow(ligne,2) - 0.5*ligne;
+        int id  = (int)(0.5*Math.pow(ligne,2) - 0.5*ligne);
         
         return id;
     }
@@ -80,7 +80,7 @@ public class Util {
 
     public static int idFinLigne(int ligne){
         
-        int id = 0.5*Math.pow(ligne, 2) + 0.5*ligne - 1;
+        int id = (int)(0.5*Math.pow(ligne, 2) + 0.5*ligne - 1);
         
         return id;
     }

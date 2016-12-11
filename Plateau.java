@@ -22,8 +22,11 @@ public class Plateau {
     private int[] valBleus = new int[10];             // valeurs faciales des jetons bleus
     private int[] valRouges = new int[10];     // valeurs faciales des jetons rouges
 
+    private double[][] plateau = new double[21][2];
+
     public static double L_JEU;
     public static double H_JEU;
+
 
     public enum couleur {                       // constantes pour les couleurs des jetons
         BLEU, ROUGE
@@ -40,6 +43,7 @@ public class Plateau {
         int random; 
         int i = 0;
         int j = 0;
+        int compteur = 0;
         boolean test = false;
         for(i=0; i<10; i++){
                 valBleus[i] = i+1;
@@ -52,6 +56,20 @@ public class Plateau {
     
         idBleu = valBleus[0];
         idRouge = valRouges[0];
+
+
+        for (i=0; i<N_LIG;i++){
+            for (j=0; j<(N_LIG-i);j++){
+                    if (i>0){
+                        plateau[compteur][0] = j+i*0.5;
+                        plateau[compteur][1] = i-i*0.12;
+                    }else{
+                        plateau[compteur][0] = j+i*0.5;
+                        plateau[compteur][1] = i;
+                    }  
+                    compteur++;  
+            }
+        }
         
         trace();
 
@@ -103,14 +121,17 @@ public class Plateau {
 
     
     public void trace(){
-        double i;
-        double j;
-        int compteur = 0;
+        int i;
 
         StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
         StdDraw.setYscale(-0.5, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(2.5, 5.2, "Le jeton manquant");
+        for(i=0; i<N_POS; i++){
+              StdDraw.circle(plateau[i][0], plateau[i][1], 0.5);
+              StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(i)); 
+        }
+        /*
         for (i=0; i<N_LIG;i++){
             for (j=0; j<(N_LIG-i);j++){
                     if (i>0){
@@ -123,6 +144,7 @@ public class Plateau {
                     compteur++;  
             }
         }
+        */
 
 
         StdDraw.setPenColor(StdDraw.BLUE);
