@@ -71,57 +71,18 @@ public class Util {
 
 
     public static int idDebutLigne(int ligne){
-        switch (ligne)
-        {
-            case 0:
-                return 0 ;
 
-            case 1:
-                return 6 ;
-
-            case 2:
-                return 11 ;
-
-            case 3:
-                return 15 ;
-
-            case 4:
-                return 18 ;
-
-            case 5:
-                return 20 ;
-
-            default:
-                return 0;
-        }
+        int id  = 0.5*Math.pow(ligne,2) - 0.5*ligne;
+        
+        return id;
     }
 
 
     public static int idFinLigne(int ligne){
-        switch (ligne)
-        {
-            case 0:
-                return 5 ;
-
-            case 1:
-                return 10 ;
-
-            case 2:
-                return 14 ;
-
-            case 3:
-                return 17 ;
-
-            case 4:
-                return 19 ;
-
-            case 5:
-                return 20 ;
-
-            default:
-                return 0;
-        }
-
+        
+        int id = 0.5*Math.pow(ligne, 2) + 0.5*ligne - 1;
+        
+        return id;
     }
 
 }
