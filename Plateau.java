@@ -175,9 +175,10 @@ public class Plateau {
 
     public int getIdCase(double x, double y){
         int id = 22;
-
+        double distance;
         for(int i=0; i<N_POS; i++){
-            if((x>=plateau[i][0]-0.5 || x>=plateau[i][0]+0.5) && (y>=plateau[i][1]-0.5 || y>=plateau[i][1]+0.5)){
+            distance = Util.distance(plateau[i][0],plateau[i][1], x, y);
+            if(distance < 0.5){
                 id = i;
             }
         }
