@@ -61,7 +61,7 @@ public class Plateau {
         tab = Util.state2tab(chaine);
         System.out.println("state2tab :");
         for(int t = 0; t<tab.length; t++){
-            System.out.println(tab[t]);
+            System.out.print(tab[t]);
         }
         System.out.println("");
         String chaine2;
