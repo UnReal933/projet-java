@@ -72,7 +72,7 @@ public class Plateau {
         }
         
         trace();
-        selectId();
+        /*
         String chaine = "[ _ B1 _ _ _ _ _ _ _ _ _ _ _ _ _ B2 _ _ _ R1 _ _ ]";
         int taille = chaine.length();
         String [] tab = new String[((taille-2)/2)];
@@ -86,7 +86,7 @@ public class Plateau {
         chaine2 = Util.state2string(tab);
         System.out.println("state2string :");
         System.out.println(chaine2);
-        
+        */
     }
 
 
@@ -129,20 +129,14 @@ public class Plateau {
         StdDraw.text(0.5, 4.5, nombreBleu);
         StdDraw.text(4.5, 4.5, nombreRouge);
 
+
     }
 
-    public void selectId(){
-        double x;
-        double y;
+    public int selectId(double x, double y){
         
-        x = StdDraw.mouseX();
-        y = StdDraw.mouseY();
-
-        int res = getIdCase(x,y);
-        StdDraw.setPenColor(StdDraw.BLACK);
-        if(res != 22){
-            StdDraw.filledCircle(plateau[res][0], plateau[res][1], 0.5);
-        }
+        int id = getIdCase(x, y);
+       
+        return id;
     }
 
     public int getIdCase(double x, double y){
