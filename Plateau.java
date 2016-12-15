@@ -22,7 +22,7 @@ public class Plateau {
     private int[] valBleus = new int[10];             // valeurs faciales des jetons bleus
     private int[] valRouges = new int[10];     // valeurs faciales des jetons rouges
 
-    private double[][] plateau = new double[21][2];
+    public static double[][] plateau = new double[21][2];
 
     public static double L_JEU;
     public static double H_JEU;

@@ -79,7 +79,7 @@ public class Partie{
         StdDraw.show();
         StdDraw.pause(10);
        
-        Jeton jeu = new Jeton();
+        
 
         while(nbCoup<20){
             if (StdDraw.mousePressed()){ 
@@ -90,17 +90,20 @@ public class Partie{
                     id = jeu.selectId(x, y);
                     Jeton[] etat = jeu.getEtat();
 
-
+                    if(id != 22 && etat[id] == nul){
                         if(nbCoup%2==0){
                             val = jeu.getIdBleu();
-                            StdDraw.setPenColor(StdDraw.BLUE);
                             jeu.setIdBLeu(nbCoupBleu);
+                            etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
+                            StdDraw.setPenColor(StdDraw.BLUE);
+                            Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
                             nbCoupBleu++;
-                            // etat[nbCoup] = new Jeton(val, Plateau.couleur.BLEU, id);
                         }else{
                             val = jeu.getIdRouge();
-                            StdDraw.setPenColor(StdDraw.RED);
                             jeu.setIdRouge(nbCoupRouge);
+                            etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
+                            StdDraw.setPenColor(StdDraw.RED);
+                            Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
                             nbCoupRouge++;
                         }
 
@@ -110,7 +113,7 @@ public class Partie{
                         StdDraw.show();
                         StdDraw.pause(10);
                         nbCoup++;
-                    
+                    }
                                               
                 }
                     

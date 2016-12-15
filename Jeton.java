@@ -48,16 +48,13 @@ public class Jeton {
         rayon = r;
     }
 
-
-
     /**
      * Dessine le jeton sur le plateau
      * @param x abcisse du jeton
      * @param y ordonnée du jeton
      */
     public void trace(double x, double y){
-        StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledCircle(4.5, 4.5, 0.5); 
+        StdDraw.filledCircle(x, y, 0.5); 
     }
 
     public int getPosition(){ return position; }
