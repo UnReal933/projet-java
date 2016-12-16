@@ -19,8 +19,8 @@ public class Plateau {
     private int idBleu;    // numéro d'ordre du prochan jeton bleu à poser
     private int idRouge;    // numéro d'ordre du prochan jeton rouge à poser
 
-    private int[] valBleus = new int[10];             // valeurs faciales des jetons bleus
-    private int[] valRouges = new int[10];     // valeurs faciales des jetons rouges
+    private int[] valBleus = new int[11];             // valeurs faciales des jetons bleus
+    private int[] valRouges = new int[11];     // valeurs faciales des jetons rouges
 
     public static double[][] plateau = new double[21][2];
 
@@ -116,7 +116,7 @@ public class Plateau {
         StdDraw.text(2.5, 5.2, "Le jeton manquant");
         for(i=0; i<N_POS; i++){
               StdDraw.circle(plateau[i][0], plateau[i][1], 0.5);
-              StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(i)); 
+              //StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(i)); 
         }
        
         StdDraw.setPenColor(StdDraw.BLUE);
@@ -128,6 +128,8 @@ public class Plateau {
         String nombreRouge =  String.valueOf(idRouge);
         StdDraw.text(0.5, 4.5, nombreBleu);
         StdDraw.text(4.5, 4.5, nombreRouge);
+        
+        
 
 
     }
