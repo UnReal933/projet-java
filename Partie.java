@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 /**
  * Created by zulupero on 08/09/16.
@@ -42,12 +43,13 @@ public class Partie{
         StdDraw.show();
         StdDraw.pause(10);
 
+        //écran de sélection pour mélangez ou on les jetons
         while(rep == 0){
             if(StdDraw.mousePressed()){ 
                         if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
                             x = StdDraw.mouseX();
                             y = StdDraw.mouseY();
-
+                            //position des 2 boutons de choix du mélange ou non
                             if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
                                 melange = true;
                                 rep = 1;
@@ -82,6 +84,7 @@ public class Partie{
         Jeton[] etat = jeu.getEtat();
         etat = new Jeton[Plateau.N_POS];
 
+        //fonctions s'occupant du déroulement de la partie
         while(nbCoup<20){
             if (StdDraw.mousePressed()){ 
                 if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
@@ -137,10 +140,12 @@ public class Partie{
             }
             
         }
-        
-
+        double i=0;
+        String[] j;
+        Plateau plateau = new Plateau();
+  			i=plateau.caseVide();
+  			System.out.println(i);
+  			j=plateau.afficheEtat();
+  			System.out.println(Arrays.toString(j));
     }
-
-
-    
 }

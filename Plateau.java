@@ -70,24 +70,18 @@ public class Plateau {
                     compteur++;  
             }
         }
-        
         trace();
-        /*
-        String chaine = "[ _ B1 _ _ _ _ _ _ _ _ _ _ _ _ _ B2 _ _ _ R1 _ _ ]";
-        int taille = chaine.length();
-        String [] tab = new String[((taille-2)/2)];
-        tab = Util.state2tab(chaine);
-        System.out.println("state2tab :");
-        for(int t = 0; t<tab.length; t++){
-            System.out.print(tab[t]);
-        }
-        System.out.println("");
-        String chaine2;
-        chaine2 = Util.state2string(tab);
-        System.out.println("state2string :");
-        System.out.println(chaine2);
-        */
     }
+        
+        
+        public String[] afficheEtat(){
+        String j;
+        String[] chaine;
+        j=Util.state2string(chaine);
+        chaine = j.split("");
+        return chaine;
+        
+        }
 
 
     public int getIdBleu(){
@@ -128,10 +122,6 @@ public class Plateau {
         String nombreRouge =  String.valueOf(idRouge);
         StdDraw.text(0.5, 4.5, nombreBleu);
         StdDraw.text(4.5, 4.5, nombreRouge);
-        
-        
-
-
     }
 
     public int selectId(double x, double y){
@@ -156,7 +146,7 @@ public class Plateau {
 
     private Jeton[] etat;                       // tableau de jetons (1 jeton par case ou null si vide)
 
-    /* fin des attribus */
+    /* fin des attributs */
 
     /* assesseurs pour l'attribut état */
     public Jeton[] getEtat(){
@@ -164,6 +154,20 @@ public class Plateau {
     }
     public void setEtat(Jeton[] state){
         etat = state.clone();
+    }
+
+
+    public double caseVide(){
+        for (double i=0;i<=N_POS;i++ ) {
+            for (double j=0;j<=N_POS;j++  ) {
+                
+            
+            if(selectId(i,j)!=getIdRouge()&& selectId(i,j)!=getIdBleu()){
+                return selectId(i,j);
+            }
+           } 
+        }
+        return 1;
     }
 
 
