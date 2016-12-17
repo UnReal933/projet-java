@@ -87,4 +87,52 @@ public class Util {
         return id;
     }
 
+    public static int calculGagnant(int idresultat){
+		int ligne =0;
+		int score =0;
+
+		while( idresultat < (idFinLigne(ligne))){
+			ligne++;
+		}
+
+		int scoretemp =0;
+		if (idresultat == idFinLigne(ligne)){                                       /* CALCUL POUR FIN DE LIGNE */
+			if (etat[idresultat + (6-ligne)].getCouleur() == Plateau.couleur.ROUGE){
+				scoretemp += -(etat[idresultat + (6-ligne)].getValeur());
+			}
+			else{
+				scoretemp += etat[idresultat + (6-ligne)].getValeur();
+			}
+			if (etat[idresultat + (6-ligne)].getCouleur() == Plateau.couleur.ROUGE){
+				scoretemp += -(etat[idresultat + (6-ligne)].getValeur());
+			}
+			else{
+				scoretemp += etat[idresultat - 1].getValeur();
+			}
+			if (etat[idresultat - (6-ligne)].getCouleur() == Plateau.couleur.ROUGE){
+				scoretemp += -(etat[idresultat - (6-ligne)].getValeur());
+			}
+			else{
+				scoretemp += etat[idresultat - (6-ligne)].getValeur();
+			}
+			if (etat[idresultat - (6-ligne+1)].getCouleur() == Plateau.couleur.ROUGE){
+				scoretemp += -(etat[idresultat - (6-ligne)].getValeur());
+			}
+			else{
+				scoretemp += etat[idresultat - (6-ligne+1)].getValeur();
+			}
+
+		}
+
+
+		if (idresultat == idDebutLigne(temp)){
+
+		}
+
+		else {
+
+		}
+
+	}
+
 }
