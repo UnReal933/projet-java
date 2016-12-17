@@ -102,14 +102,19 @@ public class Partie{
                             StdDraw.setPenColor(StdDraw.BLUE);
                             Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
                             nbCoupBleu++;
-                            jeu.setIdBLeu(nbCoupBleu);
+                            if(nbCoupBleu<10){
+                                jeu.setIdBLeu(nbCoupBleu);
+                            }
                         }else{
                             val = jeu.getIdRouge();
                             etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
                             StdDraw.setPenColor(StdDraw.RED);
                             Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
                             nbCoupRouge++;
-                            jeu.setIdRouge(nbCoupRouge);
+                            if(nbCoupRouge<10){
+                                jeu.setIdRouge(nbCoupRouge);
+                            }
+                            
                         }
 
                         StdDraw.clear(); 
