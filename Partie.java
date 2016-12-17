@@ -141,7 +141,11 @@ public class Partie{
         } 
         
         int caseVide = jeu.caseVide(etat);
-        int score = Util.calculGagnant(caseVide, etat);
+        int ligne = Util.determinationGagnant(etat, caseVide);
+        int gagnant = Util.calculGagnant(caseVide, etat);
+        System.out.println("gagnant = " + gagnant);
+        System.out.println(caseVide);
+        System.out.println(ligne);
 
 
         

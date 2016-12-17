@@ -73,17 +73,56 @@ public class Util {
 
 
     public static int idDebutLigne(int ligne){
-
-        int id  = (int)(0.5*Math.pow(ligne,2) - 0.5*ligne);
+    	int id = 0;
+        switch (ligne) {
+        	case 0:
+        		id = 0;
+        		break;
+        	case 1:
+        		id = 6;
+        		break;
+        	case 2:
+        		id = 11;
+        		break;
+        	case 3:
+        		id = 15;
+        		break;
+        	case 4:
+        		id = 18;
+        		break;
+        	case 5:
+        		id = 20;
+        		break;
+        }
         
         return id;
     }
 
 
     public static int idFinLigne(int ligne){
-        
-        int id = (int)(0.5*Math.pow(ligne, 2) + 0.5*ligne - 1);
-        
+        int id = 0;
+
+        switch (ligne) { 
+        	case 0:
+        		id = 5;
+        		break;
+        	case 1:
+        		id = 10;
+        		break;
+        	case 2:
+        		id = 14;
+        		break;
+        	case 3:
+        		id = 17;
+        		break;
+        	case 4:
+        		id = 19;
+        		break;
+        	case 5:
+        		id = 20;
+        		break;
+        }
+
         return id;
     }
 
@@ -92,7 +131,7 @@ public class Util {
 		int score =0;
         int scoretemp =0;
 
-        if (idresultat = 0){
+        if (idresultat == 0){
             if (etat[idresultat + (1)].getCouleur() == Plateau.couleur.ROUGE){
                 scoretemp += -(etat[1].getValeur());
             }
@@ -108,7 +147,7 @@ public class Util {
 
         }
 
-        if (idresultat = 5){
+        if (idresultat == 5){
             if (etat[idresultat + (4)].getCouleur() == Plateau.couleur.ROUGE){
                 scoretemp += -(etat[4].getValeur());
             }
@@ -124,7 +163,7 @@ public class Util {
 
         }
 
-        if (idresultat = 20){
+        if (idresultat == 20){
             if (etat[idresultat + (18)].getCouleur() == Plateau.couleur.ROUGE){
                 scoretemp += -(etat[18].getValeur());
             }
@@ -236,5 +275,19 @@ public class Util {
 
 		return scoretemp;
 	}
+
+
+	public static int determinationGagnant(Jeton[] etat, int idVide){
+	int ligne;
+	int i = 0;
+
+	while(idVide < idDebutLigne(i) || idVide > idFinLigne(i)){
+		i++;
+	}
+	
+	ligne = i;
+
+	return ligne;
+}
 
 }
