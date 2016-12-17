@@ -141,7 +141,8 @@ public class Partie{
         } 
         
         int caseVide = jeu.caseVide(etat);
-        System.out.println(caseVide);
+        int score = Util.calculGagnant(caseVide, etat);
+
 
         
     }

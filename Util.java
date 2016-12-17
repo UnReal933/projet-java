@@ -87,7 +87,7 @@ public class Util {
         return id;
     }
 
-    public static int calculGagnant(int idresultat){
+    public static int calculGagnant(int idresultat, Jeton[] etat){
 		int ligne =0;
 		int score =0;
 
@@ -125,14 +125,14 @@ public class Util {
 		}
 
 
-		if (idresultat == idDebutLigne(temp)){
+		if (idresultat == idDebutLigne(ligne)){
 
 		}
 
 		else {
 
 		}
-
+		return scoretemp;
 	}
 
 }
