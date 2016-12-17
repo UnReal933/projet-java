@@ -78,7 +78,7 @@ public class Partie{
         */
         Jeton[] etat = jeu.getEtat();
         etat = new Jeton[Plateau.N_POS];
-        
+
         StdDraw.clear();
         jeu.Plateau(melange, etat);
         StdDraw.show();
@@ -98,27 +98,19 @@ public class Partie{
                     if(id != 22 && etat[id] == null){
                         if(nbCoup%2==0){
                             val = jeu.getIdBleu();
-                            jeu.setIdBLeu(nbCoupBleu);
                             etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
                             StdDraw.setPenColor(StdDraw.BLUE);
-                            //trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
-                            StdDraw.filledCircle(Plateau.plateau[id][0], Plateau.plateau[id][1], 0.5);
-                            StdDraw.setPenColor(StdDraw.WHITE);
-                            StdDraw.text(Plateau.plateau[id][0], Plateau.plateau[id][1], String.valueOf(val)); 
+                            Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
                             nbCoupBleu++;
+                            jeu.setIdBLeu(nbCoupBleu);
                         }else{
                             val = jeu.getIdRouge();
-                            jeu.setIdRouge(nbCoupRouge);
                             etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
                             StdDraw.setPenColor(StdDraw.RED);
-                            //trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
-                            StdDraw.filledCircle(Plateau.plateau[id][0], Plateau.plateau[id][1], 0.5);
-                            StdDraw.setPenColor(StdDraw.WHITE);
-                            StdDraw.text(Plateau.plateau[id][0], Plateau.plateau[id][1], String.valueOf(val)); 
+                            Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
                             nbCoupRouge++;
+                            jeu.setIdRouge(nbCoupRouge);
                         }
-
-                        
 
                         StdDraw.clear(); 
                         jeu.setEtat(etat);
@@ -142,14 +134,10 @@ public class Partie{
             }
             
         } 
-        /*
-        double i=0;
-        String[] j;
-        Plateau plateau = new Plateau();
-  			i=plateau.caseVide();
-  			System.out.println(i);
-  			j=plateau.afficheEtat();
-  			System.out.println(Arrays.toString(j));
-        */
+
+        int caseVide = jeu.caseVide(etat);
+        System.out.println(caseVide);
+
+        
     }
 }

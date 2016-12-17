@@ -172,17 +172,13 @@ public class Plateau {
     }
 
 
-    public double caseVide(){
-        for (double i=0; i<=N_POS;i++ ) {
-            for (double j=0;j<=N_POS;j++  ) {
-                
-            
-            if(selectId(i,j)!=getIdRouge()&& selectId(i,j)!=getIdBleu()){
-                return selectId(i,j);
-            }
-           } 
+    public int caseVide(Jeton[] etat){
+        int i = 0;
+
+        while(etat[i] != null){
+            i++;
         }
-        return 1;
+        return i;
     }
 
 

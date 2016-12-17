@@ -53,8 +53,10 @@ public class Jeton {
      * @param x abcisse du jeton
      * @param y ordonnée du jeton
      */
-    public void trace(double x, double y){
+    public static void trace(double x, double y, int val){
         StdDraw.filledCircle(x, y, 0.5); 
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(x, y, String.valueOf(val)); 
     }
 
     public int getPosition(){ return position; }
