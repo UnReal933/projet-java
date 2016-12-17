@@ -73,7 +73,7 @@ public class Plateau {
         trace(etat);
     }
     
-    public String affiche(double x, double y, String chaine){
+    public void affiche(double x, double y, String chaine){
          StdDraw.text(x, y, chaine);
     }
 
