@@ -76,13 +76,15 @@ public class Partie{
         }
 
         */
+        Jeton[] etat = jeu.getEtat();
+        etat = new Jeton[Plateau.N_POS];
+        
         StdDraw.clear();
-        jeu.Plateau(melange);
+        jeu.Plateau(melange, etat);
         StdDraw.show();
         StdDraw.pause(10);
        
-        Jeton[] etat = jeu.getEtat();
-        etat = new Jeton[Plateau.N_POS];
+        
 
         //fonctions s'occupant du déroulement de la partie
         while(nbCoup<20){
@@ -96,31 +98,31 @@ public class Partie{
                     if(id != 22 && etat[id] == null){
                         if(nbCoup%2==0){
                             val = jeu.getIdBleu();
-                            jeu.setIdBLeu(nbCoupBleu+1);
+                            jeu.setIdBLeu(nbCoupBleu);
                             etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
                             StdDraw.setPenColor(StdDraw.BLUE);
-                            //Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
+                            //trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
                             StdDraw.filledCircle(Plateau.plateau[id][0], Plateau.plateau[id][1], 0.5);
                             StdDraw.setPenColor(StdDraw.WHITE);
                             StdDraw.text(Plateau.plateau[id][0], Plateau.plateau[id][1], String.valueOf(val)); 
                             nbCoupBleu++;
                         }else{
                             val = jeu.getIdRouge();
-                            jeu.setIdRouge(nbCoupRouge+1);
+                            jeu.setIdRouge(nbCoupRouge);
                             etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
                             StdDraw.setPenColor(StdDraw.RED);
-                            //Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
-                             StdDraw.filledCircle(Plateau.plateau[id][0], Plateau.plateau[id][1], 0.5);
-                             StdDraw.setPenColor(StdDraw.WHITE);
-                             StdDraw.text(Plateau.plateau[id][0], Plateau.plateau[id][1], String.valueOf(val)); 
+                            //trace(Plateau.plateau[id][0], Plateau.plateau[id][1]);
+                            StdDraw.filledCircle(Plateau.plateau[id][0], Plateau.plateau[id][1], 0.5);
+                            StdDraw.setPenColor(StdDraw.WHITE);
+                            StdDraw.text(Plateau.plateau[id][0], Plateau.plateau[id][1], String.valueOf(val)); 
                             nbCoupRouge++;
                         }
 
                         
 
-                        //StdDraw.clear(); 
+                        StdDraw.clear(); 
                         jeu.setEtat(etat);
-                        jeu.trace();
+                        jeu.trace(etat);
 
                         if(nbCoupBleu == 10){
                             StdDraw.setPenColor(StdDraw.GRAY);
@@ -139,7 +141,8 @@ public class Partie{
                     
             }
             
-        }
+        } 
+        /*
         double i=0;
         String[] j;
         Plateau plateau = new Plateau();
@@ -147,5 +150,6 @@ public class Partie{
   			System.out.println(i);
   			j=plateau.afficheEtat();
   			System.out.println(Arrays.toString(j));
+        */
     }
 }

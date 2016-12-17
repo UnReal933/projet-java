@@ -9,7 +9,7 @@ public class Plateau {
     /* constantes de la classe*/
     public static final int N_POS = 21; // nombre de cases
     public static final int N_LIG = 6;  // nombre de lignes de cases
-    public static final double R = 1.0; // rayon des cases
+    public static final double R = 0.5; // rayon des cases
     public static final double D = 2*R; // diamètre des cases
     public static final int ID_MAX = 10;// Valeur max / indice max des jetons
     //public static final double L_JEU = 10;              // Largeur de la fenêtre de jeu
@@ -19,8 +19,8 @@ public class Plateau {
     private int idBleu;    // numéro d'ordre du prochan jeton bleu à poser
     private int idRouge;    // numéro d'ordre du prochan jeton rouge à poser
 
-    private int[] valBleus = new int[11];             // valeurs faciales des jetons bleus
-    private int[] valRouges = new int[11];     // valeurs faciales des jetons rouges
+    private int[] valBleus = new int[ID_MAX];             // valeurs faciales des jetons bleus
+    private int[] valRouges = new int[ID_MAX];     // valeurs faciales des jetons rouges
 
     public static double[][] plateau = new double[21][2];
 
@@ -33,7 +33,7 @@ public class Plateau {
     };
 
 
-     public void Plateau(boolean melange){
+     public void Plateau(boolean melange, Jeton[] etat){
        
         L_JEU = 10;
         H_JEU = L_JEU;
@@ -61,29 +61,29 @@ public class Plateau {
         for (i=0; i<N_LIG;i++){
             for (j=0; j<(N_LIG-i);j++){
                     if (i>0){
-                        plateau[compteur][0] = j+i*0.5;
+                        plateau[compteur][0] = j+i*R;
                         plateau[compteur][1] = i-i*0.12;
                     }else{
-                        plateau[compteur][0] = j+i*0.5;
+                        plateau[compteur][0] = j+i*R;
                         plateau[compteur][1] = i;
                     }  
                     compteur++;  
             }
         }
-        trace();
+        trace(etat);
     }
         
-        
+        /*
         public String[] afficheEtat(){
-        String j;
-        String[] chaine;
-        j=Util.state2string(chaine);
-        chaine = j.split("");
-        return chaine;
-        
+            String j;
+
+            String[] chaine;
+            j=Util.state2string(chaine);
+            chaine = j.split("");
+            return chaine;
         }
 
-
+    */
     public int getIdBleu(){
         return idBleu;
     }
@@ -101,27 +101,42 @@ public class Plateau {
     }
 
     
-    public void trace(){
+    public void trace(Jeton[] etat){
         int i;
+        int val;
 
-        StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
-        StdDraw.setYscale(-0.5, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
+        StdDraw.setXscale(-R, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
+        StdDraw.setYscale(-R, 5.5); // fixe l'amplitude des ordonnées dans la fenêtre
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(2.5, 5.2, "Le jeton manquant");
         for(i=0; i<N_POS; i++){
-              StdDraw.circle(plateau[i][0], plateau[i][1], 0.5);
+              StdDraw.circle(plateau[i][0], plateau[i][1], R);
               //StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(i)); 
         }
        
         StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.filledCircle(0.5, 4.5, 0.5);
+        StdDraw.filledCircle(R, 4.5, R);
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.filledCircle(4.5, 4.5, 0.5); 
+        StdDraw.filledCircle(4.5, 4.5, R); 
         StdDraw.setPenColor(StdDraw.WHITE);
         String nombreBleu =  String.valueOf(idBleu);
         String nombreRouge =  String.valueOf(idRouge);
         StdDraw.text(0.5, 4.5, nombreBleu);
         StdDraw.text(4.5, 4.5, nombreRouge);
+        
+        for(i = 0; i<N_POS; i++){
+            if(etat[i] != null){
+                val = etat[i].getValeur();
+                if(etat[i].getCouleur() == Plateau.couleur.BLEU){
+                    StdDraw.setPenColor(StdDraw.BLUE);
+                }else{
+                    StdDraw.setPenColor(StdDraw.RED);
+                }
+                StdDraw.filledCircle(plateau[i][0], plateau[i][1], R);
+                StdDraw.setPenColor(StdDraw.WHITE);
+                StdDraw.text(plateau[i][0], plateau[i][1], String.valueOf(val));  
+            }
+        }
     }
 
     public int selectId(double x, double y){
@@ -136,7 +151,7 @@ public class Plateau {
         double distance;
         for(int i=0; i<N_POS; i++){
             distance = Util.distance(plateau[i][0],plateau[i][1], x, y);
-            if(distance < 0.5){
+            if(distance < R){
                 id = i;
             }
         }
@@ -158,7 +173,7 @@ public class Plateau {
 
 
     public double caseVide(){
-        for (double i=0;i<=N_POS;i++ ) {
+        for (double i=0; i<=N_POS;i++ ) {
             for (double j=0;j<=N_POS;j++  ) {
                 
             

@@ -10,17 +10,19 @@ public class Util {
     public static void shuffle(int[] tab){
 
     	int taille = tab.length;
-    	int a;
+    	int temp;
     	int alea;
 
     	random = new Random();
 
     	for(int i = 0; i<taille; i++){
     		alea = random.nextInt(taille);
-    		a = tab[i];
+    		temp = tab[i];
     		tab[i] = tab[alea];
-    		tab[alea] = a;
+    		tab[alea] = temp;
     	}
+
+       
 
     }
 
