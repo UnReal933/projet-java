@@ -72,18 +72,35 @@ public class Plateau {
         }
         trace(etat);
     }
-        
-        /*
-        public String[] afficheEtat(){
-            String j;
+    
+    public String affiche(double x, double y, String chaine){
+         StdDraw.text(x, y, chaine);
+    }
 
-            String[] chaine;
-            j=Util.state2string(chaine);
-            chaine = j.split("");
-            return chaine;
+    public String afficheEtat(Jeton[] etat){
+        String chaineEtat = "[ ";
+        int val;
+        for(int i = 0; i<N_POS; i++){
+            if(etat[i] != null){
+                val = etat[i].getValeur();
+                if(etat[i].getCouleur() == Plateau.couleur.BLEU){
+                    chaineEtat = chaineEtat + "B";
+                }else{
+                    chaineEtat = chaineEtat + "R";
+                }
+                chaineEtat = chaineEtat + String.valueOf(val);
+            }else{
+                chaineEtat = chaineEtat + "_";
+            }
+            chaineEtat = chaineEtat + " ";
         }
 
-    */
+        chaineEtat = chaineEtat + "]";
+
+        return chaineEtat;
+    }
+
+    
     public int getIdBleu(){
         return idBleu;
     }
