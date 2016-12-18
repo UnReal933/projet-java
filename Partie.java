@@ -2,10 +2,10 @@ import java.util.Scanner;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import javax.swing.*;
+import sun.audio.*;
+import java.awt.event.*;
 import java.io.*;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
 
 /**
  * Created by zulupero on 08/09/16.
@@ -29,19 +29,9 @@ public class Partie{
     public static void main(String[] args) throws InterruptedException {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
-        try
-        {
-            InputStream in = new FileInputStream("music.wav");
-            AudioStream as = new AudioStream(in);
-            AudioPlayer.player.start(as);
 
-        }
-        catch (IOException e)
-        {
-            System.err.println(e);
-        }
-
-
+        musique();
+        
         while(true){
 
             menu();
@@ -55,7 +45,7 @@ public class Partie{
             }
 
             while(typePartie == 2){
-                partieJoueurIA();
+                //partieJoueurIA();
             }
 
             StdDraw.clear(); 
@@ -465,7 +455,7 @@ public class Partie{
                     }
                 }
             }else{
-                Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
+                //Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
             }
             j=0;
             StdDraw.clear(); 
@@ -525,6 +515,20 @@ public class Partie{
             }
         }
         reponse = 0;
+    }
+
+    public static void musique(){
+        try
+        {
+            InputStream in = new FileInputStream("music.wav");
+            AudioStream as = new AudioStream(in);
+            AudioPlayer.player.start(as);
+
+        }
+        catch (IOException e)
+        {
+            System.err.println(e);
+        }
     }
 
 }
