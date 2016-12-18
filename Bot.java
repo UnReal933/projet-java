@@ -61,79 +61,74 @@ public class Bot {
         else {
 
             condition = 0;
-            for (int i = 0 ; i <6 ; i++){
+            for (int i = 0 ; i <6 ; i++) {
 
-                if (caseVide(Jeton[idFinLigne(i)]) ==0){
+                if (caseVide(Jeton[idFinLigne(i)]) == 0) {
 
-                    if (nbcoupstemp%2 == 0){
+                    if (nbcoupstemp % 2 == 0) {
 
                         etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idFinLigne(i));
                         condition = 1;
 
-                    }
-
-                    else{
+                    } else {
 
                         etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idFinLigne(i));
                         condition = 1;
                     }
                 }
-                
-                if (caseVide(Jeton[idDebutLigne(i)]) ==0 && condition != 1){
 
-                    if (nbcoupstemp%2 == 0){
+                if (caseVide(Jeton[idDebutLigne(i)]) == 0 && condition != 1) {
+
+                    if (nbcoupstemp % 2 == 0) {
 
                         etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idDebutLigne(i));
                         condition = 1;
 
-                    }
-
-                    else{
+                    } else {
 
                         etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idDebutLigne(i));
                         condition = 1;
                     }
                 }
+            }
+            if (condition !=1) {
+                for (int i = 0 ; i <20 ; i++) {
 
-                if (condition !=1) {
+                    if (caseVide(Jeton[i]) == 0) {
 
-                    for (int i = 0 ; i <20 ; i++){
+                        if (caseVide(Jeton[i + 1]) != 0) {
 
-                        if (caseVide(Jeton[i]) ==0){
+                            if (nbcoupstemp % 2 == 0) {
 
-                            if (caseVide(Jeton[i+1]) !=0 ){
+                                etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
+                                condition = 1;
 
-                                if (nbcoupstemp%2 == 0){
+                            } else {
 
-                                    etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
-                                    condition = 1;
-
-                                }
-
-                                else{
-
-                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
-                                    condition = 1;
-                                }
+                                etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+                                condition = 1;
                             }
                         }
                     }
+                }
 
-                    if (condition != 1 ) {
-                        for (int i = 0; i <= 20; i++) {
+                
 
-                            if (caseVide(Jeton[i]) == 0) {
+                if (condition != 1 ) {
+                    for (int i = 0; i <= 20; i++) {
 
-                                if (nbcoupstemp % 2 == 0) {
+                        if (caseVide(Jeton[i]) == 0) {
 
-                                    etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
-                                    condition = 1;
-                                } else {
+                            if (nbcoupstemp % 2 == 0) {
 
-                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
-                                    condition = 1;
+                                etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
+                                condition = 1;
+                            } else {
 
-                                }
+                                etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+                                condition = 1;
+
+
                             }
                         }
                     }
