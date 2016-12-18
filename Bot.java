@@ -63,7 +63,7 @@ public class Bot {
             condition = 0;
             for (int i = 0 ; i <6 ; i++) {
 
-                if (etat[Util.idFinLigne(i)] == null) {
+                if (etat[Util.idFinLigne(i)] == null && condition != 1) {
 
                     if (nbcoupstemp % 2 == 0) {
 
