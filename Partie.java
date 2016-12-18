@@ -12,7 +12,8 @@ public class Partie{
 
     public static void main(String[] args) throws InterruptedException {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
-
+        int jouer = 0;
+        while(jouer == 0){
         Plateau jeu = new Plateau();  // argument à compléter selon conception
         
         boolean start = true;
@@ -26,7 +27,7 @@ public class Partie{
         double y = 0;
         int id;
         int val;
-        int jouer = 0;
+        
 
         // Menu pour choisir si l'on veut melanger ou non les jetons
         StdDraw.setXscale(-0.5, 5.5); // fixe l'amplitude des abscisses dans la fenêtre
@@ -63,7 +64,7 @@ public class Partie{
             }
         }
         rep = 0;
-        while(jouer == 0){
+        
             Jeton[] etat = jeu.getEtat();
             etat = new Jeton[Plateau.N_POS];
 
