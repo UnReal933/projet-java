@@ -348,6 +348,9 @@ public class Partie{
                 StdDraw.setPenColor(StdDraw.RED);
                 Jeton.trace(Plateau.plateau[i][0], Plateau.plateau[i][1], nbCoupRouge+1);
                 nbCoupRouge++;
+                if(nbCoupRouge<10){
+                    jeu.setIdRouge(nbCoupRouge);
+                }
             }
             j=0;
             StdDraw.clear(); 
@@ -405,7 +408,7 @@ public class Partie{
                     y = StdDraw.mouseY();
                     //position des 2 boutons de choix du mélange ou non
                     if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                        typePartie = 0;
+                        typePartie = 1;
                         reponse = 1;
                     }
                     if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
@@ -470,7 +473,7 @@ public class Partie{
                 Bot.playBot(etat, nbCoup, nbCoupRouge+1);
                 nbCoupRouge++;
                 if(nbCoupRouge<10){
-                    jeu.setIdBLeu(nbCoupRouge);
+                    jeu.setIdRouge(nbCoupRouge);
                 }
             }
             j=0;
@@ -492,8 +495,8 @@ public class Partie{
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
         else if(gagnant == -1){
-            System.out.println("Le joueur rouge a gagné !");
-            StdDraw.text(2.5, 3, "Le joueur rouge a gagné !");
+            System.out.println("L'IA a gagné !");
+            StdDraw.text(2.5, 3, "L'IA a gagné !");
         }
         else{
             System.out.println("Egalité !");
@@ -517,7 +520,7 @@ public class Partie{
                     y = StdDraw.mouseY();
                     //position des 2 boutons de choix du mélange ou non
                     if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                        typePartie = 0;
+                        typePartie = 2;
                         reponse = 1;
                     }
                     if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){

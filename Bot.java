@@ -28,12 +28,12 @@ public class Bot {
 
                     if (nbcoupstemp%2 == 0){
 
-                        etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
+                        etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
                         condition = 1;
                     }
                     else{
 
-                        etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
+                        etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
                         condition = 1;
                     }
 
@@ -42,12 +42,12 @@ public class Bot {
                     if (etat[position] == null){
                         if (nbcoupstemp%2 == 0){
 
-                            etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
+                            etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
                             condition = 1;
                         }
                         else{
 
-                            etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
+                            etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
                             condition = 1;
                         }
                     }
@@ -67,12 +67,12 @@ public class Bot {
 
                     if (nbcoupstemp % 2 == 0) {
 
-                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idFinLigne(i));
+                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idFinLigne(i));
                         condition = 1;
 
                     } else {
 
-                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idFinLigne(i));
+                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idFinLigne(i));
                         condition = 1;
                     }
                 }
@@ -81,12 +81,12 @@ public class Bot {
 
                     if (nbcoupstemp % 2 == 0) {
 
-                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idDebutLigne(i));
+                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idDebutLigne(i));
                         condition = 1;
 
                     } else {
 
-                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idDebutLigne(i));
+                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idDebutLigne(i));
                         condition = 1;
                     }
                 }
