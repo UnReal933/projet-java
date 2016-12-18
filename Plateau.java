@@ -2,8 +2,6 @@
  * Created by zulupero on 08/09/16.
  */
 
-import java.util.*;
-
 public class Plateau {
 
     /* constantes de la classe*/
@@ -32,7 +30,15 @@ public class Plateau {
         BLEU, ROUGE
     };
 
+    /**
 
+     * Fonctions définissant l'échelle de la fenêtre graphique, et initialisant les attributs et appelle la méthode trace.
+
+     * @param melange mode aléatoire ou non
+
+     * @param Jeton[] etat donne l'état du jeton
+
+     */
      public void Plateau(boolean melange, Jeton[] etat){
        
         L_JEU = 10;
@@ -72,11 +78,19 @@ public class Plateau {
         }
         trace(etat);
     }
-    
+    /**
+     * Fonctions affichant la chaine des état des jetons.
+     */
     public void affiche(double x, double y, String chaine){
          StdDraw.text(x, y, chaine);
     }
+    /**
 
+     * Fonctions créant une chaine avec les états des jetons.
+
+     * @param Jeton[] etat donne l'état du jeton
+
+     */
     public String afficheEtat(Jeton[] etat){
         String chaineEtat = "[ ";
         int val;
@@ -100,24 +114,49 @@ public class Plateau {
         return chaineEtat;
     }
 
-    
+    /**
+
+     * Fonctions retournant l'id bleu.
+
+     */
     public int getIdBleu(){
         return idBleu;
     }
 
+    /**
+
+     * Fonctions retournant l'id rouge.
+
+     */
     public int getIdRouge(){
         return idRouge;
     }
 
+    /**
+
+     * Fonctions définissant l'Id d'un jetons bleu.
+
+     */
     public void setIdBLeu(int rang){
         idBleu = valBleus[rang];
     }
 
+    /**
+
+     * Fonctions définissant l(id d'un jeotn rouge.
+
+     */
     public void setIdRouge(int rang){
         idRouge = valRouges[rang];
     }
 
-    
+    /**
+
+     * Fonctions traçant le tableau.
+
+     * @param Jeton[] etat donne l'état du jeton
+
+     */
     public void trace(Jeton[] etat){
         int i;
         int val;
@@ -155,14 +194,30 @@ public class Plateau {
             }
         }
     }
+    /**
 
+     * Fonctions créant une chaine avec les états des jetons.
+
+     * @param double x , donne l'abscisse du jeton.
+
+     *@param double y , donne l'ordonné du jeton.
+
+     */
     public int selectId(double x, double y){
         
         int id = getIdCase(x, y);
        
         return id;
     }
+    /**
 
+     * Fonctions retournant l'Id de la case.
+
+     * @param double x , donne l'abscisse du jeton.
+
+     *@param double y , donne l'ordonné du jeton.
+
+     */
     public int getIdCase(double x, double y){
         int id = 22;
         double distance;
@@ -188,7 +243,14 @@ public class Plateau {
         etat = state.clone();
     }
 
+    /**
 
+     * Fonctions retournant le numéro de la case vide.
+
+     * @param Jeton[] etat donne l'état du jeton
+
+
+     */
     public int caseVide(Jeton[] etat){
         int i = 0;
 
@@ -197,7 +259,15 @@ public class Plateau {
         }
         return i;
     }
+    /**
 
+     * Fonctions déterminant le gangant.
+
+     * @param Jeton[] etat donne l'état du jeton.
+
+     * @param idVide est l'Id de la case vide.
+
+     */
     public static int determineGagnant(Jeton[] etat, int idVide){
         int scoreBleu = 0;
         int scoreRouge = 0;
