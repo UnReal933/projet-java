@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Bot {
 
-    public void PlayBot ( Jeton[] etat, int nbcoupstemp, int valeur ){
+    public void playBot ( Jeton[] etat, int nbcoupstemp, int valeur ){
 
         double nbcoups = nbcoupstemp/2;
         int position =0;
