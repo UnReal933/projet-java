@@ -30,12 +30,13 @@ public class Partie{
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
 
-        musique();
+        musique(); //Lance la musique
         
         while(quitter == false){
 
-            menu();
+            menu(); //Affiche le menu
 
+            //3 types de parties différentes
             while(typePartie == 0){
                 partieJoueurJoueur();
             }
@@ -54,6 +55,7 @@ public class Partie{
         System.exit(0);
     }
 
+    //Fonction qui affiche le menu
     public static void menu(){
           // Menu principal du jeu
             StdDraw.setXscale(-0.5, 5.5);
@@ -87,7 +89,7 @@ public class Partie{
             StdDraw.show();
             StdDraw.pause(10);
 
-            //écran de sélection pour mélangez ou on les jetons
+            //Ecran de sélection pour mélangez ou on les jetons
             while(reponse == 0){
 
                 if(StdDraw.mousePressed()){ 
@@ -119,165 +121,166 @@ public class Partie{
             StdDraw.clear();
     }
 
+    //Fonction qui permet le déroulement d'une partie entre 2 joueurs
     public static void partieJoueurJoueur(){
         Plateau jeu = new Plateau();  // argument à compléter selon conception
             
-                melange = true;
-                reponse = 0;
-                nbCoup = 0;
-                nbCoupBleu = 0;
-                nbCoupRouge = 0;
-                x = 0;
-                y = 0;
-                
+        melange = true;
+        reponse = 0;
+        nbCoup = 0;
+        nbCoupBleu = 0;
+        nbCoupRouge = 0;
+        x = 0;
+        y = 0;
+        
 
-                // Menu pour choisir si l'on veut melanger ou non les jetons
-                StdDraw.text(2.5, 4, "Le jeton manquant");
-                StdDraw.text(2.5, 3, "Voulez-vous mélanger les jetons ?");
-                StdDraw.setPenColor(StdDraw.BLUE);
-                StdDraw.filledRectangle(1.75, 2, 0.5, 0.25);
-                StdDraw.setPenColor(StdDraw.WHITE);
-                StdDraw.text(1.75, 2, "Oui");
-                StdDraw.setPenColor(StdDraw.RED);
-                StdDraw.filledRectangle(3.25, 2, 0.5, 0.25);
-                StdDraw.setPenColor(StdDraw.WHITE);
-                StdDraw.text(3.25, 2, "Non");
-                StdDraw.show();
-                StdDraw.pause(10);
+        // Menu pour choisir si l'on veut melanger ou non les jetons
+        StdDraw.text(2.5, 4, "Le jeton manquant");
+        StdDraw.text(2.5, 3, "Voulez-vous mélanger les jetons ?");
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.filledRectangle(1.75, 2, 0.5, 0.25);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(1.75, 2, "Oui");
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.filledRectangle(3.25, 2, 0.5, 0.25);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(3.25, 2, "Non");
+        StdDraw.show();
+        StdDraw.pause(10);
 
-                //écran de sélection pour mélangez ou on les jetons
-                while(reponse == 0){
-                    if(StdDraw.mousePressed()){ 
-                                if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
-                                    x = StdDraw.mouseX();
-                                    y = StdDraw.mouseY();
-                                    //position des 2 boutons de choix du mélange ou non
-                                    if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                        melange = true;
-                                        reponse = 1;
-                                    }
-                                    if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                         melange = false;
-                                         reponse = 1;
-                                    }
+        //écran de sélection pour mélangez ou on les jetons
+        while(reponse == 0){
+            if(StdDraw.mousePressed()){ 
+                        if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                            x = StdDraw.mouseX();
+                            y = StdDraw.mouseY();
+                            //position des 2 boutons de choix du mélange ou non
+                            if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                                melange = true;
+                                reponse = 1;
+                            }
+                            if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                                 melange = false;
+                                 reponse = 1;
+                            }
+                        }
+            }
+        }
+        reponse = 0;
+        
+            Jeton[] etat = jeu.getEtat();
+            etat = new Jeton[Plateau.N_POS];
+
+            StdDraw.clear();
+            jeu.Plateau(melange, etat);
+            StdDraw.show();
+            StdDraw.pause(10);
+           
+            
+
+            //fonctions s'occupant du déroulement de la partie
+            while(nbCoup<20){
+                if (StdDraw.mousePressed()){ 
+                    if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                        x = StdDraw.mouseX();
+                        y = StdDraw.mouseY();
+                            
+                        id = jeu.selectId(x, y);
+
+                        if(id != 22 && etat[id] == null){
+                            if(nbCoup%2==0){
+                                val = jeu.getIdBleu();
+                                etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
+                                StdDraw.setPenColor(StdDraw.BLUE);
+                                Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
+                                nbCoupBleu++;
+                                if(nbCoupBleu<10){
+                                    jeu.setIdBLeu(nbCoupBleu);
                                 }
+                            }else{
+                                val = jeu.getIdRouge();
+                                etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
+                                StdDraw.setPenColor(StdDraw.RED);
+                                Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
+                                nbCoupRouge++;
+                                if(nbCoupRouge<10){
+                                    jeu.setIdRouge(nbCoupRouge);
+                                }
+                                
+                            }
+
+                            StdDraw.clear(); 
+                            jeu.setEtat(etat);
+                            jeu.trace(etat);
+
+                            if(nbCoupBleu == 10){
+                                StdDraw.setPenColor(StdDraw.GRAY);
+                                StdDraw.filledCircle(0.5, 4.5, 0.5);
+                            }
+                            if(nbCoupRouge == 10){
+                                StdDraw.setPenColor(StdDraw.GRAY);
+                                StdDraw.filledCircle(4.5, 4.5, 0.5); 
+                            }
+                            StdDraw.show();
+                            StdDraw.pause(10);
+                            nbCoup++;
+                        }
+                                                  
+                    }
+                        
+                }
+                
+            } 
+
+            //Menu fin de partie
+            StdDraw.clear();
+            int caseVide = jeu.caseVide(etat);
+            int gagnant = jeu.determineGagnant(etat, caseVide);
+            if(gagnant == 1){
+                StdDraw.setPenColor(StdDraw.BLACK);
+                System.out.println("Le joueur bleu a gagné !");
+                StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
+            }
+            else if(gagnant == -1){
+                System.out.println("Le joueur rouge a gagné !");
+                StdDraw.text(2.5, 3, "Le joueur rouge a gagné !");
+            }
+            else{
+                System.out.println("Egalité !");
+                StdDraw.text(2.5, 3, "Egalité !");
+            }
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.filledRectangle(1.75, 2, 0.5, 0.25);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.text(1.75, 2, "Rejouer");
+            StdDraw.setPenColor(StdDraw.RED);
+            StdDraw.filledRectangle(3.25, 2, 0.5, 0.25);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.text(3.25, 2, "Menu");
+            StdDraw.show();
+            StdDraw.pause(10);
+
+            while(reponse == 0){
+               if(StdDraw.mousePressed()){ 
+                    if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                        x = StdDraw.mouseX();
+                        y = StdDraw.mouseY();
+                        //position des 2 boutons de choix du mélange ou non
+                        if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                            typePartie = 0;
+                            reponse = 1;
+                        }
+                        if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                            typePartie = 4;
+                            reponse = 1;
+                        }
                     }
                 }
-                reponse = 0;
-                
-                    Jeton[] etat = jeu.getEtat();
-                    etat = new Jeton[Plateau.N_POS];
-
-                    StdDraw.clear();
-                    jeu.Plateau(melange, etat);
-                    StdDraw.show();
-                    StdDraw.pause(10);
-                   
-                    
-
-                    //fonctions s'occupant du déroulement de la partie
-                    while(nbCoup<20){
-                        if (StdDraw.mousePressed()){ 
-                            if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
-                                x = StdDraw.mouseX();
-                                y = StdDraw.mouseY();
-                                    
-                                id = jeu.selectId(x, y);
-
-                                if(id != 22 && etat[id] == null){
-                                    if(nbCoup%2==0){
-                                        val = jeu.getIdBleu();
-                                        etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
-                                        StdDraw.setPenColor(StdDraw.BLUE);
-                                        Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
-                                        nbCoupBleu++;
-                                        if(nbCoupBleu<10){
-                                            jeu.setIdBLeu(nbCoupBleu);
-                                        }
-                                    }else{
-                                        val = jeu.getIdRouge();
-                                        etat[id] = new Jeton(val, Plateau.couleur.ROUGE, id);
-                                        StdDraw.setPenColor(StdDraw.RED);
-                                        Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
-                                        nbCoupRouge++;
-                                        if(nbCoupRouge<10){
-                                            jeu.setIdRouge(nbCoupRouge);
-                                        }
-                                        
-                                    }
-
-                                    StdDraw.clear(); 
-                                    jeu.setEtat(etat);
-                                    jeu.trace(etat);
-
-                                    if(nbCoupBleu == 10){
-                                        StdDraw.setPenColor(StdDraw.GRAY);
-                                        StdDraw.filledCircle(0.5, 4.5, 0.5);
-                                    }
-                                    if(nbCoupRouge == 10){
-                                        StdDraw.setPenColor(StdDraw.GRAY);
-                                        StdDraw.filledCircle(4.5, 4.5, 0.5); 
-                                    }
-                                    StdDraw.show();
-                                    StdDraw.pause(10);
-                                    nbCoup++;
-                                }
-                                                          
-                            }
-                                
-                        }
-                        
-                    } 
-
-                    //Menu fin de partie
-                    StdDraw.clear();
-                    int caseVide = jeu.caseVide(etat);
-                    int gagnant = jeu.determineGagnant(etat, caseVide);
-                    if(gagnant == 1){
-                        StdDraw.setPenColor(StdDraw.BLACK);
-                        System.out.println("Le joueur bleu a gagné !");
-                        StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
-                    }
-                    else if(gagnant == -1){
-                        System.out.println("Le joueur rouge a gagné !");
-                        StdDraw.text(2.5, 3, "Le joueur rouge a gagné !");
-                    }
-                    else{
-                        System.out.println("Egalité !");
-                        StdDraw.text(2.5, 3, "Egalité !");
-                    }
-                    StdDraw.setPenColor(StdDraw.BLUE);
-                    StdDraw.filledRectangle(1.75, 2, 0.5, 0.25);
-                    StdDraw.setPenColor(StdDraw.WHITE);
-                    StdDraw.text(1.75, 2, "Rejouer");
-                    StdDraw.setPenColor(StdDraw.RED);
-                    StdDraw.filledRectangle(3.25, 2, 0.5, 0.25);
-                    StdDraw.setPenColor(StdDraw.WHITE);
-                    StdDraw.text(3.25, 2, "Menu");
-                    StdDraw.show();
-                    StdDraw.pause(10);
-
-                    while(reponse == 0){
-                       if(StdDraw.mousePressed()){ 
-                            if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
-                                x = StdDraw.mouseX();
-                                y = StdDraw.mouseY();
-                                //position des 2 boutons de choix du mélange ou non
-                                if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                    typePartie = 0;
-                                    reponse = 1;
-                                }
-                                if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                    typePartie = 4;
-                                    reponse = 1;
-                                }
-                            }
-                        }
-                    }
-                    reponse = 0;
+            }
+            reponse = 0;
     }
 
-
+    //Fonction qui permet le déroulement d'une partie contre le serveur
     public static void partieJoueurServeur(){
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
@@ -299,7 +302,7 @@ public class Partie{
         jeu.Plateau(melange, etat);
         StdDraw.show();
         StdDraw.pause(10);
-                   
+        int i = 0;        
         int j = 0; 
 
         //fonctions s'occupant du déroulement de la partie
@@ -330,7 +333,7 @@ public class Partie{
                 }
             }else{
                 chaineEtat = jeu.afficheEtat(etat);
-                if(nbCoup<=10){
+                if(nbCoupRouge<6){
                     reponseServeur = client.querySimplePlay(chaineEtat);
                 }else{
                     reponseServeur = client.querySecondStage(chaineEtat);
@@ -340,9 +343,8 @@ public class Partie{
                 String tab1[] = Util.state2tab(chaineEtat);
                 String tab2[] = Util.state2tab(reponseServeur);
 
-                int taille = tab2.length;
-                int i = 0;
-                while(tab1[i] == tab2[i]){
+                i = 0;
+                while(tab1[i].length() == tab2[i].length()){
                     i++;
                 }
                 etat[i] = new Jeton(nbCoupRouge+1, Plateau.couleur.ROUGE, i);
@@ -360,32 +362,30 @@ public class Partie{
             StdDraw.show();
             StdDraw.pause(10);
             nbCoup++;
-            if(nbCoup == 10){
-                 chaineEtat = jeu.afficheEtat(etat);
+            if(nbCoupRouge == 6){
+                chaineEtat = jeu.afficheEtat(etat);
                 reponseServeur = client.initSecondStage(chaineEtat);   
             }
         }
-        
-       
                          
         chaineEtat = jeu.afficheEtat(etat);
         reponseServeur = client.endPlay(chaineEtat);
-
+        System.out.println(reponseServeur);
 
         //Menu fin de partie
         StdDraw.clear();
-        int caseVide = jeu.caseVide(etat);
-        int gagnant = jeu.determineGagnant(etat, caseVide);
-        if(reponseServeur == "bleus"){
+        if(reponseServeur.equals("BLEUS")){
             StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Le joueur bleu a gagné !");
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
-        else if(reponseServeur == "rouges"){
+        else if(reponseServeur.equals("ROUGES")){
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Le serveur a gagné !");
             StdDraw.text(2.5, 3, "Le serveur a gagné !");
         }
         else{
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Egalité !");
             StdDraw.text(2.5, 3, "Egalité !");
         }
@@ -422,7 +422,7 @@ public class Partie{
         }
         reponse = 0;
     }
-
+    //Fonction qui permet le déroulement d'une partie contre notre propre IA
     public static void partieJoueurIA(){
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
@@ -498,10 +498,12 @@ public class Partie{
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
         else if(gagnant == -1){
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("L'IA a gagné !");
             StdDraw.text(2.5, 3, "L'IA a gagné !");
         }
         else{
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Egalité !");
             StdDraw.text(2.5, 3, "Egalité !");
         }

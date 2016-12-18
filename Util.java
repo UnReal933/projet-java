@@ -7,6 +7,11 @@ public class Util {
 
     private static Random random;
 
+	/**
+	 * Randomizer des valeurs
+	 * @param tab[] valeur faciale des jetons
+	 */
+
     public static void shuffle(int[] tab){
 
     	int taille = tab.length;
@@ -24,10 +29,15 @@ public class Util {
 
     }
 
+	/**
+	 * Transformateur de chaine de caractères en tableau
+	 * @param chaine la chaine actuelle qui définit le plateau
+	 */
+
 	public static String[] state2tab(String chaine){
 
 		int taille = chaine.length();
-		String tab[] = new String [((taille))];
+		String tab[] = new String [21];
 		int rangtab = 0;
 
 		for (int i = 1; i<taille-1; i++){
@@ -46,6 +56,11 @@ public class Util {
 		return tab;
 	}
 
+	/**
+	 * Transformateur de tableau en chaine de caractere
+	 * @param tab[] le tableau du plateau
+	 */
+
 	public static String state2string(String tab[]){
 
 		int taille = tab.length;
@@ -60,6 +75,14 @@ public class Util {
 		return chaine;
 	}
 
+	/**
+	 * Calcul la distance euclidienne entre deux points
+	 * @param x1 coordonnée en X du premier point
+	 * @param y1 coordonnée en Y du premier point
+	 * @param x2 coordonnée en X du deuxième point
+	 * @param y2 coordonnée en Y du deuxième point
+	 */
+
      public static double distance(double x1, double y1, double x2, double y2){
 
     	double distance;
@@ -69,6 +92,10 @@ public class Util {
     	return distance;
     }
 
+	/**
+	 * Calcul du premier ID de la ligne passé en paramètre
+	 * @param ligne qui correspond à la ligne
+	 */
 
     public static int idDebutLigne(int ligne){
     	int id = 0;
@@ -96,6 +123,10 @@ public class Util {
         return id;
     }
 
+	/**
+	 * Calcul du dernier ID de la ligne passé en paramètre
+	 * @param ligne qui correspond à la ligne
+	 */
 
     public static int idFinLigne(int ligne){
         int id = 0;
