@@ -2,13 +2,13 @@ import java.util.*;
 
 public class Bot {
 
-    public void playBot ( Jeton[] etat, int nbcoupstemp, int valeur ){
+    public static void playBot ( Jeton[] etat, int nbcoupstemp, int valeur ){
 
         double nbcoups = nbcoupstemp/2;
         int position =0;
         int condition = 0;
         int ligne;
-
+        int tour = 0;
 
 
         if (valeur < 6){
@@ -18,22 +18,22 @@ public class Bot {
                 position = (int)(Math.random() * (( 20 - 0 )+1));
                 ligne =0;
 
-                while (position > idFinLigne(ligne)){
+                while (position > Util.idFinLigne(ligne)){
 
                     ligne++;
 
                 }
 
-                if (etat[position] == null && idFinLigne(ligne) != position && idDebutLigne(ligne) != position){
+                if (etat[position] == null && Util.idFinLigne(ligne) != position && Util.idDebutLigne(ligne) != position){
 
                     if (nbcoupstemp%2 == 0){
 
-                        etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
+                        etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
                         condition = 1;
                     }
                     else{
 
-                        etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
+                        etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
                         condition = 1;
                     }
 
@@ -42,18 +42,18 @@ public class Bot {
                     if (etat[position] == null){
                         if (nbcoupstemp%2 == 0){
 
-                            etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
+                            etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
                             condition = 1;
                         }
                         else{
 
-                            etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
+                            etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
                             condition = 1;
                         }
                     }
                 }
 
-
+                tour++;
             }
 
         }
@@ -63,30 +63,30 @@ public class Bot {
             condition = 0;
             for (int i = 0 ; i <6 ; i++) {
 
-                if (etat[idFinLigne(i)] == null) {
+                if (etat[Util.idFinLigne(i)] == null) {
 
                     if (nbcoupstemp % 2 == 0) {
 
-                        etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idFinLigne(i));
+                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idFinLigne(i));
                         condition = 1;
 
                     } else {
 
-                        etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idFinLigne(i));
+                        etat[Util.idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idFinLigne(i));
                         condition = 1;
                     }
                 }
 
-                if (etat[idDebutLigne(i)] == null && condition != 1) {
+                if (etat[Util.idDebutLigne(i)] == null && condition != 1) {
 
                     if (nbcoupstemp % 2 == 0) {
 
-                        etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idDebutLigne(i));
+                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, Util.idDebutLigne(i));
                         condition = 1;
 
                     } else {
 
-                        etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idDebutLigne(i));
+                        etat[Util.idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, Util.idDebutLigne(i));
                         condition = 1;
                     }
                 }

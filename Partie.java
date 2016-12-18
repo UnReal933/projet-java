@@ -45,7 +45,7 @@ public class Partie{
             }
 
             while(typePartie == 2){
-                //partieJoueurIA();
+                partieJoueurIA();
             }
 
 
@@ -469,7 +469,7 @@ public class Partie{
                     }
                 }
             }else{
-                //Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
+                Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
             }
             j=0;
             StdDraw.clear(); 
