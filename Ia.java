@@ -24,14 +24,17 @@ public class Ia {
 
                     if (nbcoupstemp%2 == 0){
 
-                        return R[i];
+                        etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
                     }
                     else{
 
-                        return B[i];
+                        etat[position] = new Jeton(valeur, Plateau.couleur.ROUGE, position);
                     }
+
                 }
+
             }
+            
         }
 
         else {
@@ -42,24 +45,26 @@ public class Ia {
 
                     if (nbcoupstemp%2 == 0){
 
-                        return R[idFinLigne(i)];
+                        etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idFinLigne(i));
+
                     }
 
                     else{
 
-                        return B[idFinLigne(i)];
+                        etat[idFinLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idFinLigne(i));
                     }
                 }
                 if (caseVide(Jeton[idDebutLigne(i)]) ==0){
 
                     if (nbcoupstemp%2 == 0){
 
-                        return R[idDebutLigne(i)];
+                        etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.BLEU, idDebutLigne(i));
+
                     }
 
                     else{
 
-                        return B[idDebutLigne(i)];
+                        etat[idDebutLigne(i)] = new Jeton(valeur, Plateau.couleur.ROUGE, idDebutLigne(i));
                     }
                 }
 
@@ -73,12 +78,13 @@ public class Ia {
 
                                 if (nbcoupstemp%2 == 0){
 
-                                    return R[i];
+                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+
                                 }
 
                                 else{
 
-                                    return B[i];
+                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
                                 }
                             }
                         }
@@ -90,12 +96,12 @@ public class Ia {
 
                             if (nbcoupstemp%2 == 0){
 
-                                return R[i];
+                                etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
                             }
 
                             else{
 
-                                return B[i];
+                                etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
                             }
                         }
                     }
