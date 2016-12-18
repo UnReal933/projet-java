@@ -234,6 +234,7 @@ public class Partie{
                     int caseVide = jeu.caseVide(etat);
                     int gagnant = jeu.determineGagnant(etat, caseVide);
                     if(gagnant == 1){
+                        StdDraw.setPenColor(StdDraw.BLACK);
                         System.out.println("Le joueur bleu a gagné !");
                         StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
                     }
@@ -376,6 +377,7 @@ public class Partie{
         int caseVide = jeu.caseVide(etat);
         int gagnant = jeu.determineGagnant(etat, caseVide);
         if(reponseServeur == "bleus"){
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Le joueur bleu a gagné !");
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
@@ -491,6 +493,7 @@ public class Partie{
         int caseVide = jeu.caseVide(etat);
         int gagnant = jeu.determineGagnant(etat, caseVide);
         if(gagnant == 1){
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Le joueur bleu a gagné !");
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
