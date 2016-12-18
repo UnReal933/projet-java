@@ -26,7 +26,6 @@ public class Partie{
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
         while(true){
-            
 
             menu();
 
@@ -34,7 +33,7 @@ public class Partie{
                 partieJoueurJoueur();
             }
 
-            while(typePartie == 1){
+            while(typePartie == 1){    
                 partieJoueurServeur();
             }
 
@@ -50,6 +49,7 @@ public class Partie{
           // Menu principal du jeu
             StdDraw.setXscale(-0.5, 5.5);
             StdDraw.setYscale(-0.5, 5.5);
+            StdDraw.setPenColor(StdDraw.BLACK);
             StdDraw.text(2.5, 5, "Le jeton manquant");
             StdDraw.text(2.5, 4, "MENU");
 
@@ -258,6 +258,196 @@ public class Partie{
 
     public static void partieJoueurServeur(){
 
-        partieJoueurJoueur();
+        Plateau jeu = new Plateau();  // argument à compléter selon conception
+        Client client = new Client();      
+        String reponseServeur;
+        String chaineEtat;
+        melange = false;
+        reponse = 0;
+        nbCoup = 0;
+        nbCoupBleu = 0;
+        nbCoupRouge = 0;
+        x = 0;
+        y = 0;
+                    
+        Jeton[] etat = jeu.getEtat();
+        etat = new Jeton[Plateau.N_POS];
+
+        StdDraw.clear();
+        jeu.Plateau(melange, etat);
+        StdDraw.show();
+        StdDraw.pause(10);
+                   
+        int j = 0; 
+
+        //fonctions s'occupant du déroulement de la partie
+        while(nbCoup < 11){
+            if(nbCoup%2 == 0){
+                while(j == 0){
+                    if(StdDraw.mousePressed()){ 
+                        if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                            x = StdDraw.mouseX();
+                            y = StdDraw.mouseY();
+                                
+                            id = jeu.selectId(x, y);
+
+                            if(id != 22 && etat[id] == null){
+                                
+                                val = jeu.getIdBleu();
+                                etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
+                                StdDraw.setPenColor(StdDraw.BLUE);
+                                Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
+                                nbCoupBleu++;
+                                if(nbCoupBleu<10){
+                                    jeu.setIdBLeu(nbCoupBleu);
+                                }
+                                j = 1;  
+                            }
+                        }
+                    }
+                }
+            }else{
+                chaineEtat = jeu.afficheEtat(etat);
+                reponseServeur = client.querySimplePlay(chaineEtat);
+
+                String tab1[] = Util.state2tab(chaineEtat);
+                String tab2[] = Util.state2tab(reponseServeur);
+
+                int taille = tab2.length;
+                int i = 0;
+                while(tab1[i] == tab2[i]){
+                    i++;
+                }
+                etat[i] = new Jeton(nbCoupRouge+1, Plateau.couleur.ROUGE, i);
+                StdDraw.setPenColor(StdDraw.RED);
+                Jeton.trace(Plateau.plateau[i][0], Plateau.plateau[i][1], nbCoupRouge+1);
+                nbCoupRouge++;
+            }
+            j=0;
+            StdDraw.clear(); 
+            jeu.setEtat(etat);
+            jeu.trace(etat);
+            StdDraw.show();
+            StdDraw.pause(10);
+            nbCoup++;
+            System.out.println(nbCoup);
+        }
+        
+        chaineEtat = jeu.afficheEtat(etat);
+        reponseServeur = client.initSecondStage(chaineEtat);
+
+         while(nbCoup < 20){
+            if(nbCoup%2 == 0){
+                while(j == 0){
+                    if(StdDraw.mousePressed()){ 
+                        if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                            x = StdDraw.mouseX();
+                            y = StdDraw.mouseY();
+                                
+                            id = jeu.selectId(x, y);
+
+                            if(id != 22 && etat[id] == null){
+                                
+                                val = jeu.getIdBleu();
+                                etat[id] = new Jeton(val, Plateau.couleur.BLEU, id);
+                                StdDraw.setPenColor(StdDraw.BLUE);
+                                Jeton.trace(Plateau.plateau[id][0], Plateau.plateau[id][1], val);
+                                nbCoupBleu++;
+                                if(nbCoupBleu<10){
+                                    jeu.setIdBLeu(nbCoupBleu);
+                                }
+                                j = 1;  
+                            }
+                        }
+                    }
+                }
+            }else{
+                chaineEtat = jeu.afficheEtat(etat);
+                reponseServeur = client.querySecondStage(chaineEtat);
+                System.out.println(reponseServeur);
+
+                String tab1[] = Util.state2tab(chaineEtat);
+                String tab2[] = Util.state2tab(reponseServeur);
+
+                int taille = tab2.length;
+                int i = 0;
+                while(tab1[i] == tab2[i]){
+                    i++;
+                }
+                etat[i] = new Jeton(nbCoupRouge+1, Plateau.couleur.ROUGE, i);
+                StdDraw.setPenColor(StdDraw.RED);
+                Jeton.trace(Plateau.plateau[i][0], Plateau.plateau[i][1], nbCoupRouge+1);
+                nbCoupRouge++;
+
+            }
+            j = 0;
+            StdDraw.clear(); 
+            jeu.setEtat(etat);
+            jeu.trace(etat);
+
+            if(nbCoupBleu == 10){
+                StdDraw.setPenColor(StdDraw.GRAY);
+                StdDraw.filledCircle(0.5, 4.5, 0.5);
+            }
+            if(nbCoupRouge == 10){
+                StdDraw.setPenColor(StdDraw.GRAY);
+                StdDraw.filledCircle(4.5, 4.5, 0.5); 
+            }
+            StdDraw.show();
+            StdDraw.pause(10);
+            nbCoup++;
+        }                                   
+        chaineEtat = jeu.afficheEtat(etat);
+        reponseServeur = client.endPlay(chaineEtat);
+
+
+        //Menu fin de partie
+        StdDraw.clear();
+        int caseVide = jeu.caseVide(etat);
+        int gagnant = jeu.determineGagnant(etat, caseVide);
+        if(reponseServeur == "bleus"){
+            System.out.println("Le joueur bleu a gagné !");
+            StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
+        }
+        else if(reponseServeur == "rouges"){
+            System.out.println("Le serveur a gagné !");
+            StdDraw.text(2.5, 3, "Le serveur a gagné !");
+        }
+        else{
+            System.out.println("Egalité !");
+            StdDraw.text(2.5, 3, "Egalité !");
+        }
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.filledRectangle(1.75, 2, 0.5, 0.25);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(1.75, 2, "Rejouer");
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.filledRectangle(3.25, 2, 0.5, 0.25);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.text(3.25, 2, "Menu");
+        StdDraw.show();
+        StdDraw.pause(10);
+
+        reponseServeur = client.close();
+        System.out.println(reponseServeur);
+
+        while(reponse == 0){
+           if(StdDraw.mousePressed()){ 
+                if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                    x = StdDraw.mouseX();
+                    y = StdDraw.mouseY();
+                    //position des 2 boutons de choix du mélange ou non
+                    if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                        typePartie = 0;
+                        reponse = 1;
+                    }
+                    if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                        typePartie = 3;
+                        reponse = 1;
+                    }
+                }
+            }
+        }
+        reponse = 0;
     }
 }
