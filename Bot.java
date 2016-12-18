@@ -109,6 +109,28 @@ public class Bot {
                                 condition = 1;
                             }
                         }
+                        if (etat[i] == null && condition != 1) {
+                            ligne = 0;
+                            while (i > Util.idFinLigne(ligne)){
+
+                                ligne++;
+
+                            }
+
+                            if (etat[i + (6-ligne)] != null) {
+
+                                if (nbcoupstemp % 2 == 0) {
+
+                                    etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
+                                    condition = 1;
+
+                                } else {
+
+                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+                                    condition = 1;
+                                }
+                            }
+                        }
                     }
                 }
 
