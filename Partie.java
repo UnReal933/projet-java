@@ -469,6 +469,9 @@ public class Partie{
             }else{
                 Bot.playBot(etat, nbCoup, nbCoupRouge+1);
                 nbCoupRouge++;
+                if(nbCoupRouge<10){
+                    jeu.setIdBLeu(nbCoupRouge);
+                }
             }
             j=0;
             StdDraw.clear(); 
