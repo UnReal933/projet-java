@@ -24,7 +24,7 @@ public class Bot {
 
                 }
 
-                if (caseVide(Jeton[position]) ==0 && idFinLigne(ligne) != position && idDebutLigne(ligne) != position){
+                if (etat[position] == null && idFinLigne(ligne) != position && idDebutLigne(ligne) != position){
 
                     if (nbcoupstemp%2 == 0){
 
@@ -39,7 +39,7 @@ public class Bot {
 
                 }
                 if (tour > 15 && condition != 1){
-                    if (caseVide(Jeton[position]) ==0){
+                    if (etat[position] == null){
                         if (nbcoupstemp%2 == 0){
 
                             etat[position] = new Jeton(valeur, Plateau.couleur.BLEU, position);
@@ -63,7 +63,7 @@ public class Bot {
             condition = 0;
             for (int i = 0 ; i <6 ; i++) {
 
-                if (caseVide(Jeton[idFinLigne(i)]) == 0) {
+                if (etat[idFinLigne(i)] == null) {
 
                     if (nbcoupstemp % 2 == 0) {
 
@@ -77,7 +77,7 @@ public class Bot {
                     }
                 }
 
-                if (caseVide(Jeton[idDebutLigne(i)]) == 0 && condition != 1) {
+                if (etat[idDebutLigne(i)] == null && condition != 1) {
 
                     if (nbcoupstemp % 2 == 0) {
 
@@ -94,9 +94,9 @@ public class Bot {
             if (condition !=1) {
                 for (int i = 0 ; i <20 ; i++) {
 
-                    if (caseVide(Jeton[i]) == 0) {
+                    if (etat[i] == null) {
 
-                        if (caseVide(Jeton[i + 1]) != 0) {
+                        if (etat[i + 1] != null) {
 
                             if (nbcoupstemp % 2 == 0) {
 
@@ -117,7 +117,7 @@ public class Bot {
                 if (condition != 1 ) {
                     for (int i = 0; i <= 20; i++) {
 
-                        if (caseVide(Jeton[i]) == 0) {
+                        if (etat[i] == null) {
 
                             if (nbcoupstemp % 2 == 0) {
 
