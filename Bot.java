@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class Ia {
+public class Bot {
 
-    public void Bot ( Jeton[] etat, int nbcoupstemp, int valeur ){
+    public void PlayBot ( Jeton[] etat, int nbcoupstemp, int valeur ){
 
         double nbcoups = nbcoupstemp/2;
         int position =0;
@@ -74,7 +74,7 @@ public class Ia {
 
                         if (caseVide(Jeton[i]) ==0){
 
-                            if (caseVide(Jeton[i+1]) ==0 ){
+                            if (caseVide(Jeton[i+1]) !=0 ){
 
                                 if (nbcoupstemp%2 == 0){
 
