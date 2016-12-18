@@ -30,12 +30,13 @@ public class Partie{
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
 
-        musique();
+        musique(); //Lance la musique
         
         while(quitter == false){
 
-            menu();
+            menu(); //Affiche le menu
 
+            //3 types de parties différentes
             while(typePartie == 0){
                 partieJoueurJoueur();
             }
@@ -54,6 +55,7 @@ public class Partie{
         System.exit(0);
     }
 
+    //Fonction qui affiche le menu
     public static void menu(){
           // Menu principal du jeu
             StdDraw.setXscale(-0.5, 5.5);
@@ -87,7 +89,7 @@ public class Partie{
             StdDraw.show();
             StdDraw.pause(10);
 
-            //écran de sélection pour mélangez ou on les jetons
+            //Ecran de sélection pour mélangez ou on les jetons
             while(reponse == 0){
 
                 if(StdDraw.mousePressed()){ 
@@ -119,6 +121,7 @@ public class Partie{
             StdDraw.clear();
     }
 
+    //Fonction qui permet le déroulement d'une partie entre 2 joueurs
     public static void partieJoueurJoueur(){
         Plateau jeu = new Plateau();  // argument à compléter selon conception
             
@@ -277,7 +280,7 @@ public class Partie{
             reponse = 0;
     }
 
-
+    //Fonction qui permet le déroulement d'une partie contre le serveur
     public static void partieJoueurServeur(){
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
@@ -419,7 +422,7 @@ public class Partie{
         }
         reponse = 0;
     }
-
+    //Fonction qui permet le déroulement d'une partie contre notre propre IA
     public static void partieJoueurIA(){
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
