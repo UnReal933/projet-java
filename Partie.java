@@ -13,7 +13,7 @@ import java.io.*;
 public class Partie{
     final static Scanner input = new Scanner(System.in);
 
-
+            public static boolean quitter = false;
             public static int nbTour = 20;
             public static boolean melange = true;
             public static int reponse = 0;
@@ -24,7 +24,7 @@ public class Partie{
             public static double y = 0;
             public static int id;
             public static int val;
-            public static int typePartie = 0;
+            public static int typePartie;
 
     public static void main(String[] args) throws InterruptedException {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
@@ -32,7 +32,7 @@ public class Partie{
 
         musique();
         
-        while(true){
+        while(quitter == false){
 
             menu();
 
@@ -48,8 +48,10 @@ public class Partie{
                 //partieJoueurIA();
             }
 
+
             StdDraw.clear(); 
         }
+        System.exit(0);
     }
 
     public static void menu(){
@@ -66,14 +68,19 @@ public class Partie{
             StdDraw.text(2.5, 3, "Joueur vs Joueur");
 
             StdDraw.setPenColor(StdDraw.RED);
-            StdDraw.filledRectangle(2.5, 2, 1, 0.25);
+            StdDraw.filledRectangle(2.5, 2.5, 1, 0.25);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.text(2.5, 2, "Joueur vs Serveur");
+            StdDraw.text(2.5, 2.5, "Joueur vs Serveur");
 
             StdDraw.setPenColor(StdDraw.GRAY);
-            StdDraw.filledRectangle(2.5, 1, 1, 0.25);
+            StdDraw.filledRectangle(2.5, 2, 1, 0.25);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.text(2.5, 1, "Joueur vs IA");
+            StdDraw.text(2.5, 2, "Joueur vs IA");
+
+            StdDraw.setPenColor(StdDraw.BLACK);
+            StdDraw.filledRectangle(2.5, 1.5, 1, 0.25);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.text(2.5, 1.5, "QUITTER");
 
             StdDraw.setPenColor(StdDraw.GRAY);
             StdDraw.text(2.5, 0, "Thomas BICHOT - Thomas GARCENOT - Benjamin ESCOBAR");
@@ -89,15 +96,22 @@ public class Partie{
                                 y = StdDraw.mouseY();
                                 //position des 2 boutons de choix du mélange ou non
                                 if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (3-0.25) && y <= (3+0.25))){
-                                    typePartie = 0;     
+                                    typePartie = 0;
+                                    reponse = 1;
+                                }
+                                if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (2.5-0.25) && y <= (2.5+0.25))){
+                                     typePartie = 1; 
+                                     reponse = 1;    
                                 }
                                 if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                     typePartie = 1;     
+                                     typePartie = 2;  
+                                     reponse = 1;   
                                 }
-                                 if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (1-0.25) && y <= (1+0.25))){
-                                     typePartie = 2;     
+                                if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (1.5-0.25) && y <= (1.5+0.25))){
+                                     quitter = true;  
+                                     reponse = 1;   
                                 }
-                                reponse = 1;
+                                
                             }
                 }
             }
@@ -253,7 +267,7 @@ public class Partie{
                                     reponse = 1;
                                 }
                                 if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                    typePartie = 3;
+                                    typePartie = 4;
                                     reponse = 1;
                                 }
                             }

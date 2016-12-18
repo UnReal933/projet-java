@@ -20,9 +20,7 @@ public class Util {
     		temp = tab[i];
     		tab[i] = tab[alea];
     		tab[alea] = temp;
-    	}
-
-       
+    	}    
 
     }
 
