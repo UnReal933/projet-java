@@ -468,6 +468,7 @@ public class Partie{
                 }
             }else{
                 Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
+                nbCoupRouge++;
             }
             j=0;
             StdDraw.clear(); 
