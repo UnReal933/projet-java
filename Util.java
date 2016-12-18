@@ -27,7 +27,7 @@ public class Util {
 	public static String[] state2tab(String chaine){
 
 		int taille = chaine.length();
-		String tab[] = new String [((taille))];
+		String tab[] = new String [21];
 		int rangtab = 0;
 
 		for (int i = 1; i<taille-1; i++){

@@ -498,10 +498,12 @@ public class Partie{
             StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
         }
         else if(gagnant == -1){
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("L'IA a gagné !");
             StdDraw.text(2.5, 3, "L'IA a gagné !");
         }
         else{
+            StdDraw.setPenColor(StdDraw.BLACK);
             System.out.println("Egalité !");
             StdDraw.text(2.5, 3, "Egalité !");
         }
