@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Ia {
 
-    public Jeton[] Bot( Jeton[] etat, int nbcoupstemp, int valeur ){
+    public void Bot ( Jeton[] etat, int nbcoupstemp, int valeur ){
 
         double nbcoups = nbcoupstemp/2;
         int position =0;
@@ -34,7 +34,7 @@ public class Ia {
                 }
 
             }
-            
+
         }
 
         else {
@@ -78,7 +78,7 @@ public class Ia {
 
                                 if (nbcoupstemp%2 == 0){
 
-                                    etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+                                    etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
 
                                 }
 
@@ -96,7 +96,7 @@ public class Ia {
 
                             if (nbcoupstemp%2 == 0){
 
-                                etat[i] = new Jeton(valeur, Plateau.couleur.ROUGE, i);
+                                etat[i] = new Jeton(valeur, Plateau.couleur.BLEU, i);
                             }
 
                             else{
