@@ -421,9 +421,7 @@ public class Partie{
     public static void partieJoueurIA(){
 
         Plateau jeu = new Plateau();  // argument à compléter selon conception
-        Client client = new Client();      
-        String reponseServeur;
-        String chaineEtat;
+      
         melange = false;
         reponse = 0;
         nbCoup = 0;
@@ -507,9 +505,6 @@ public class Partie{
         StdDraw.text(3.25, 2, "Menu");
         StdDraw.show();
         StdDraw.pause(10);
-
-        reponseServeur = client.close();
-        System.out.println(reponseServeur);
 
         while(reponse == 0){
            if(StdDraw.mousePressed()){ 
