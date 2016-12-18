@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import java.io.*;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 
 /**
  * Created by zulupero on 08/09/16.
@@ -24,6 +28,19 @@ public class Partie{
 
     public static void main(String[] args) throws InterruptedException {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
+
+        try
+        {
+            InputStream in = new FileInputStream("music.wav");
+            AudioStream as = new AudioStream(in);
+            AudioPlayer.player.start(as);
+
+        }
+        catch (IOException e)
+        {
+            System.err.println(e);
+        }
+
 
         while(true){
 
