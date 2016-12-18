@@ -198,5 +198,36 @@ public class Plateau {
         return i;
     }
 
+    public static int determineGagnant(Jeton[] etat, int idVide){
+        int scoreBleu = 0;
+        int scoreRouge = 0;
+        double distance;
+        int gagnant;
+
+        for(int i = 0; i < Plateau.N_POS; i++){
+            if(i != idVide){
+               distance = Util.distance(plateau[i][0],plateau[i][1], plateau[idVide][0], plateau[idVide][1]);
+                if(distance <= 2.1*Plateau.R){
+                    if(etat[i].getCouleur() == couleur.BLEU){
+                        scoreBleu = scoreBleu + etat[i].getValeur();
+                    }else{
+                        scoreRouge = scoreRouge + etat[i].getValeur();
+                    }
+                } 
+            } 
+        }
+
+        if(scoreRouge > scoreBleu){
+            gagnant = 1;
+        }
+        else if(scoreRouge < scoreBleu){
+            gagnant = -1;
+        }
+        else{
+            gagnant = 0;
+        }
+        
+        return gagnant;
+    }
 
 }
