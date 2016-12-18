@@ -10,24 +10,44 @@ public class Partie{
     final static Scanner input = new Scanner(System.in);
 
 
+            public static int nbTour = 20;
+            public static boolean melange = true;
+            public static int reponse = 0;
+            public static int nbCoup = 0;
+            public static int nbCoupBleu = 0;
+            public static int nbCoupRouge = 0;
+            public static double x = 0;
+            public static double y = 0;
+            public static int id;
+            public static int val;
+            public static int typePartie = 0;
+
     public static void main(String[] args) throws InterruptedException {
         StdDraw.enableDoubleBuffering(); // permet un affichage sans scintillement
 
         while(true){
-            boolean start = true;
-            int nbTour = 20;
-            boolean melange = true;
-            int reponse = 0;
-            int nbCoup = 0;
-            int nbCoupBleu = 0;
-            int nbCoupRouge = 0;
-            double x = 0;
-            double y = 0;
-            int id;
-            int val;
-            int typePartie = 0;
+            
 
-            // Menu principal du jeu
+            menu();
+
+            while(typePartie == 0){
+                partieJoueurJoueur();
+            }
+
+            while(typePartie == 1){
+                partieJoueurServeur();
+            }
+
+            while(typePartie == 2){
+                //partieIA();
+            }
+
+            StdDraw.clear(); 
+        }
+    }
+
+    public static void menu(){
+          // Menu principal du jeu
             StdDraw.setXscale(-0.5, 5.5);
             StdDraw.setYscale(-0.5, 5.5);
             StdDraw.text(2.5, 5, "Le jeton manquant");
@@ -62,15 +82,12 @@ public class Partie{
                                 y = StdDraw.mouseY();
                                 //position des 2 boutons de choix du mélange ou non
                                 if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (3-0.25) && y <= (3+0.25))){
-                                    System.out.println("JvJ");
                                     typePartie = 0;     
                                 }
                                 if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                     System.out.println("JvC");
                                      typePartie = 1;     
                                 }
                                  if((x >= (2.5-1) && x <= (2.5+1)) && (y >= (1-0.25) && y <= (1+0.25))){
-                                     System.out.println("IA");
                                      typePartie = 2;     
                                 }
                                 reponse = 1;
@@ -79,10 +96,10 @@ public class Partie{
             }
             reponse = 0;
             StdDraw.clear();
+    }
 
-
-            while(typePartie == 0){
-                Plateau jeu = new Plateau();  // argument à compléter selon conception
+    public static void partieJoueurJoueur(){
+        Plateau jeu = new Plateau();  // argument à compléter selon conception
             
                 melange = true;
                 reponse = 0;
@@ -190,10 +207,11 @@ public class Partie{
                         }
                         
                     } 
-                    
+
+                    //Menu fin de partie
+                    StdDraw.clear();
                     int caseVide = jeu.caseVide(etat);
                     int gagnant = jeu.determineGagnant(etat, caseVide);
-                    StdDraw.clear();
                     if(gagnant == 1){
                         System.out.println("Le joueur bleu a gagné !");
                         StdDraw.text(2.5, 3, "Le joueur bleu a gagné !");
@@ -218,25 +236,28 @@ public class Partie{
                     StdDraw.pause(10);
 
                     while(reponse == 0){
-                        if(StdDraw.mousePressed()){ 
-                                    if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
-                                        x = StdDraw.mouseX();
-                                        y = StdDraw.mouseY();
-                                        //position des 2 boutons de choix du mélange ou non
-                                        if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                            typePartie = 0;
-                                            reponse = 1;
-                                        }
-                                        if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
-                                            typePartie = 3;
-                                            reponse = 1;
-                                        }
-                                    }
+                       if(StdDraw.mousePressed()){ 
+                            if(x != StdDraw.mouseX() || y != StdDraw.mouseY()){
+                                x = StdDraw.mouseX();
+                                y = StdDraw.mouseY();
+                                //position des 2 boutons de choix du mélange ou non
+                                if((x >= (1.75-0.5) && x <= (1.75+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                                    typePartie = 0;
+                                    reponse = 1;
+                                }
+                                if((x >= (3.25-0.5) && x <= (3.25+0.5)) && (y >= (2-0.25) && y <= (2+0.25))){
+                                    typePartie = 3;
+                                    reponse = 1;
+                                }
+                            }
                         }
                     }
                     reponse = 0;
-            }
-        StdDraw.clear(); 
-        }
+    }
+
+
+    public static void partieJoueurServeur(){
+
+        partieJoueurJoueur();
     }
 }
