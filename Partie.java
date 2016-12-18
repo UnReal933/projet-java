@@ -467,7 +467,7 @@ public class Partie{
                     }
                 }
             }else{
-                Bot.playBot(etat, nbCoupRouge, nbCoupRouge+1);
+                Bot.playBot(etat, nbCoup, nbCoupRouge+1);
                 nbCoupRouge++;
             }
             j=0;

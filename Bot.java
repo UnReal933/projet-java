@@ -94,7 +94,7 @@ public class Bot {
             if (condition !=1) {
                 for (int i = 0 ; i <20 ; i++) {
 
-                    if (etat[i] == null) {
+                    if (etat[i] == null && condition != 1) {
 
                         if (etat[i + 1] != null) {
 
@@ -117,7 +117,7 @@ public class Bot {
                 if (condition != 1 ) {
                     for (int i = 0; i <= 20; i++) {
 
-                        if (etat[i] == null) {
+                        if (etat[i] == null && condition != 1) {
 
                             if (nbcoupstemp % 2 == 0) {
 
